@@ -1,4 +1,4 @@
-import { configureSocket, initializeSocketIO } from './src/socket';
+import { configureSocket } from './src/socket';
 import * as express from "express";
 import { Room } from './src/Room';
 import { GameServer } from './src/GameServer';

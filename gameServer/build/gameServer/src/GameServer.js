@@ -54,11 +54,10 @@ class GameServer {
         //Make io extend Socket type 
         this.io = new socket_io_1.Server(this.server, {
             cors: {
-                origin: [`http://${globalConsts_1.socket_domain}`, `https://${globalConsts_1.socket_domain}`],
-                methods: ["GET", "POST"]
+                origin: [`https://${globalConsts_1.socket_domain}`, `http://${globalConsts_1.socket_domain}`, `https://${globalConsts_1.api_domain}`, `http://${globalConsts_1.api_domain}`, 'http://localhost:5174', 'http://localhost:3000'] //methods: ["GET", "POST"]
             }
         });
-        this.expressApp.use(cors.default({ origin: 'http://localhost:5173' }));
+        this.expressApp.use(cors.default({ origin: ['http://localhost:5174', `https://${globalConsts_1.socket_domain}`, `http://${globalConsts_1.socket_domain}`, `https://${globalConsts_1.api_domain}`, `http://${globalConsts_1.api_domain}`] }));
     }
     //Takes in the host member and password and creates a room, returns the room code
     //Processes
