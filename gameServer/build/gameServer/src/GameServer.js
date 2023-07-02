@@ -46,10 +46,24 @@ const db_1 = __importDefault(require("./database/db"));
 const globalConsts_1 = require("../../globalConsts");
 class GameServer {
     constructor() {
+        // const urls = ['http://localhost:5174', 'http://localhost:3000', 
+        // `https://${socket_domain}`, 
+        // `http://${socket_domain}`, 
+        // `https://${api_domain}`, 
+        // `http://${api_domain}`,
+        // `https://${clientDomain}`,
+        // `http://${clientDomain}`]
         this.rooms = new Map();
         this.members = new Map();
         // socket: Socket<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
-        this.expressApp = express.default();
+        this.CorsUrls = ['http://localhost:5174', 'http://localhost:3000',
+            `https://${globalConsts_1.socket_domain}`,
+            `http://${globalConsts_1.socket_domain}`,
+            `https://${globalConsts_1.api_domain}`,
+            `http://${globalConsts_1.api_domain}`,
+            `https://${globalConsts_1.clientDomain}`,
+            `http://${globalConsts_1.clientDomain}`];
+        this.expressApp = express.default().use(cors.default());
         this.server = http.createServer(this.expressApp);
         //Make io extend Socket type 
         this.io = new socket_io_1.Server(this.server, {
@@ -57,17 +71,10 @@ class GameServer {
                 origin: [`https://${globalConsts_1.socket_domain}`, `http://${globalConsts_1.socket_domain}`, `https://${globalConsts_1.api_domain}`, `http://${globalConsts_1.api_domain}`, 'http://localhost:5174', 'http://localhost:3000'] //methods: ["GET", "POST"]
             }
         });
-        const urls = ['http://localhost:5174', 'http://localhost:3000',
-            `https://${globalConsts_1.socket_domain}`,
-            `http://${globalConsts_1.socket_domain}`,
-            `https://${globalConsts_1.api_domain}`,
-            `http://${globalConsts_1.api_domain}`,
-            `https://${globalConsts_1.clientDomain}`,
-            `http://${globalConsts_1.clientDomain}`];
-        console.log("Urls to allow cors: ", urls);
-        this.expressApp.use(cors.default({
-            origin: "*",
-        }));
+        // console.log("Urls to allow cors: ", urls);
+        // this.expressApp.use(cors.default({
+        //     origin: "*",
+        // }))
     }
     //Takes in the host member and password and creates a room, returns the room code
     //Processes
