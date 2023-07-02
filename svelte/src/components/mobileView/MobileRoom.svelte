@@ -1,9 +1,10 @@
 <script lang="ts">
     import { gameData, isUnopenedChats } from "src/stores";
 	import Chat from "../Chat.svelte";
-	import MobileNavBox from "./MobileNavBox.svelte";
     import Icon from "@iconify/svelte";
 	import UserDisplay from "../UserDisplay.svelte";
+	import { GameState } from "../../../../types";
+	import MobileGame from "./MobileGame.svelte";
 
     
 
@@ -15,15 +16,13 @@
 </script>
 
 <div class="h-full flex flex-col items-center justify-between">
-    <div class="h-[90%] w-full bg-pink-300">
+    <div class="h-[90%] w-full">
             {#if navSelection === "users"}
                 <UserDisplay/>
             {:else if navSelection === "chat"}
                 <Chat/>
             {:else if navSelection === "game"}
-                <div>Game</div>
-            {:else if navSelection === "settings"}
-                <div>Settings</div>
+                <MobileGame/>
             {/if}
     </div>
 
@@ -36,13 +35,13 @@
                 <Icon icon="ic:baseline-people-alt" width={"100%"}/>
             </div>
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <div hidden={!!gameData} class={"w-full h-full " + (navSelection === "game"? " selected": "")} on:click={()=>{updateNavSelection("game")}}>
+            <div hidden={$gameData.state === GameState.setup} class={"w-full h-full " + (navSelection === "game"? " selected": "")} on:click={()=>{updateNavSelection("game")}}>
                 <Icon icon="icon-park-outline:game-console" width={"100%"}/>
             </div>
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <div class={"w-full h-full " + (navSelection === "settings"? " selected": "")}  on:click={()=>{updateNavSelection("settings")}}>
+            <!-- <div class={"w-full h-full " + (navSelection === "settings"? " selected": "")}  on:click={()=>{updateNavSelection("settings")}}>
                 <Icon icon="material-symbols:settings" width={"100%"}/>
-            </div>
+            </div> -->
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div class={"w-full h-full " + (navSelection === "chat"? " selected": "")}  on:click={()=>{updateNavSelection("chat")}}>
                 <!-- <Icon icon="material-symbols:chat-bubble-rounded" width={"100%"}/> -->

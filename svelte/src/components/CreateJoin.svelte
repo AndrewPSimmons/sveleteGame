@@ -2,11 +2,15 @@
 	import { onMount } from 'svelte';
 	import { homeFormData } from '../stores';
 	import { userData } from '../stores';
+
+	const api_domain = 'localhost:3000';
+
 	userData.subscribe((value) => {
 		console.log("In the subscribe", value);
 	})
-	export let selection: string;
 	
+	export let selection: string;
+	export let roomCode: string = "";
 	let disableButton = false;
 	let errors: {[key:string]: string[]} = {
 		'username': [],
@@ -20,7 +24,7 @@
 			password: $homeFormData.password,
 			roomCode: $homeFormData.roomCode
 		};
-		const url = "http://localhost:3000/joinRoom?" + new URLSearchParams(data);
+		const url = `http://${api_domain}/joinRoom?` + new URLSearchParams(data);
 		const response = await fetch(url)
 		const resData = await response.json();
 		if(response.status === 200){
@@ -47,7 +51,7 @@
 			username: $homeFormData.username,
 			password: $homeFormData.password
 		};
-		const url = "http://localhost:3000/createRoom?"+ new URLSearchParams(data);
+		const url = `http://${api_domain}/createRoom?`+ new URLSearchParams(data);
 
 		//GET request to create room http method is GET
 		const response = await fetch(url , {
@@ -97,6 +101,12 @@
 			return data;
 		});
 	};
+	if(roomCode.length > 0){
+		homeFormData.update((data: any) => {
+			data['roomCode'] = roomCode;
+			return data;
+		});
+	}
 </script>
 
 <div class="bg-gradient-to-br from-blue3 to-blue1 h-full p-4 flex flex-col justify-between px-[10%]">
@@ -104,6 +114,7 @@
 		class="flex flex-col items-center justify-start space-y-2"
 	>
 		<input
+			bind:value={$homeFormData.username}
 			type="text"
 			placeholder="Username"
 			on:keyup={(e) => updateHomeFormData('username', e)}
@@ -111,6 +122,7 @@
 
 		<div class="flex flex-col items-center justify-center w-full text-white">
 			<input
+				bind:value={$homeFormData.password}
 				type="text"
 				placeholder="Password"
 				on:keyup={(e) => updateHomeFormData('password', e)}
@@ -122,6 +134,7 @@
 
 		{#if selection === 'join'}
 			<input
+				bind:value={$homeFormData.roomCode}
 				type="text"
 				placeholder="Room Code"
 				on:keyup={(e) => updateHomeFormData('roomCode', e)}

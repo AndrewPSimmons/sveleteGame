@@ -7,6 +7,7 @@ import readline from 'readline';
 import { Member } from './src/Member';
 import * as cors from 'cors';
 import { gameServer } from './src/GameServer';
+import DB from './src/database/db';
 // import configureSocket from './src/socketIO.mjs';
 
 //Create express app
@@ -119,7 +120,12 @@ gameServer.expressApp.get('/joinRoom', (req: express.Request, res: express.Respo
     })
 })
 
-
+gameServer.expressApp.get("/packs/official", async (req: express.Request, res: express.Response) => {
+    res.status(200).json({
+        status: "success",
+        packs: await gameServer.getOfficialPacks()
+    })
+})
 //Start express app
 // expressApp.listen(3000, () => {
 //     console.log("Listening on port 3000")
@@ -194,20 +200,25 @@ const takeCommand = () => {
                 }
                 else {
                     //Loop through split commands after roomCode and do a object key lookup 
-                    let path = splitCommand[2].split(".")
-                    let lastObject: any = null
-                    let currentObject: any = room
-                    for (let i = 0; i < path.length; i++) {
-                        const key = path[i]
-                        currentObject = currentObject[key as keyof typeof currentObject]
-                        if (currentObject === undefined) {
-                            console.log(lastObject);
-                            console.log("Invalid key, here is what was most recently found: ", key, " => ", lastObject)
-                            break
+                    if(!splitCommand[2]){
+                        console.log(room)
+                    }else{
+                        let path = splitCommand[2].split(".")
+                        let lastObject: any = null
+                        let currentObject: any = room
+                        for (let i = 0; i < path.length; i++) {
+                            const key = path[i]
+                            currentObject = currentObject[key as keyof typeof currentObject]
+                            if (currentObject === undefined) {
+                                console.log(lastObject);
+                                console.log("Invalid key, here is what was most recently found: ", key, " => ", lastObject)
+                                break
+                            }
+                            lastObject = currentObject
                         }
-                        lastObject = currentObject
+                        console.log(currentObject);
                     }
-                    console.log(currentObject);
+                  
                 }
                 takeCommand()
             }],
@@ -221,6 +232,75 @@ const takeCommand = () => {
                 commands.forEach((value, key) => {
                     console.log(key)
                 })
+                takeCommand()
+            }],
+            ["dbc", async (command )=> {
+                const card = await DB.DrawBlackCard([1,2], [], 1)
+                console.log(card);
+                console.log(JSON.stringify(card));
+                takeCommand()
+            }],
+            ["dwc", async (command )=> {
+                const card = await DB.DrawWhiteCard([1,2], [], 3)
+                console.log(card);
+                console.log(JSON.stringify(card));
+                takeCommand()
+            }],
+            ["cbc", async (command) => {
+                    const splitCommand = command.split(" ")
+                    const roomCode = splitCommand[1].toUpperCase()
+                    const room = gameServer.getRoom(roomCode)
+                    if (room === undefined) {
+                        console.log("Room not found")
+                        takeCommand()
+
+                        return
+                    }
+                    
+                    const game = room.getGame()
+                    if (game === null) {
+                        console.log("Game not found")
+                        takeCommand()
+                        return
+                    }
+                    //Change black card
+                    const forcePick = parseInt(splitCommand[2]) ?? null
+                    const card = await DB.DrawBlackCard(game.packIds, game.usedBlackCards, game.gameRules.blackCardMaxPick, forcePick)
+                    game.usedBlackCards.push(card.id)
+                    game.blackCard = card
+                    gameServer.emitUpdateGameDataWithPlayer(roomCode)
+                    takeCommand()
+
+                }
+            ],
+            ["getPack", async (command)=> {
+                const pack = await DB.GetPack(45)
+                console.log(pack);
+                takeCommand()
+            }],
+            ["egd", async (command) => {
+                const splitCommand = command.split(" ")
+                if(splitCommand.length < 2){
+                    console.log("Room code required")
+                    takeCommand()
+                    return
+                }
+                const roomCode = splitCommand[1].toUpperCase()
+                const room = gameServer.getRoom(roomCode)
+                if (room === undefined) {
+                    console.log("Room not found")
+                    takeCommand()
+
+                    return
+                }
+                
+                const game = room.getGame()
+                if (game === null) {
+                    console.log("Game not found")
+                    takeCommand()
+                    return
+                }
+                gameServer.emitUpdateGameDataWithPlayer(roomCode)
                 takeCommand()
             }]
         ]
@@ -242,5 +322,6 @@ const takeCommand = () => {
             takeCommand()
         }
     })
+    
 }
 

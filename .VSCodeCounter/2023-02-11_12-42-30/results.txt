@@ -1,0 +1,139 @@
+Date : 2023-02-11 12:42:30
+Directory : /Users/andrew/Dev/fun_projects/svelteGame
+Total : 76 files,  9839 codes, 827 comments, 413 blanks, all 11079 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          5 |      6,175 |          0 |          5 |      6,180 |
+| JavaScript         |         22 |      1,396 |        372 |         25 |      1,793 |
+| TypeScript         |         19 |      1,155 |        336 |        207 |      1,698 |
+| Svelte             |         23 |      1,050 |         24 |        148 |      1,222 |
+| JSON with Comments |          2 |         24 |         94 |          9 |        127 |
+| Markdown           |          1 |         24 |          0 |         15 |         39 |
+| HTML               |          1 |         12 |          1 |          1 |         14 |
+| CSS                |          1 |          3 |          0 |          1 |          4 |
+| Properties         |          2 |          0 |          0 |          2 |          2 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                           | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                              |         76 |      9,839 |        827 |        413 |     11,079 |
+| . (Files)                                                                                                                      |          4 |        156 |          9 |         36 |        201 |
+| gameServer                                                                                                                     |         32 |      4,902 |        770 |        168 |      5,840 |
+| gameServer (Files)                                                                                                             |          5 |      2,895 |         97 |         37 |      3,029 |
+| gameServer/build                                                                                                               |         17 |      1,335 |        367 |         17 |      1,719 |
+| gameServer/build (Files)                                                                                                       |          2 |         25 |          0 |          2 |         27 |
+| gameServer/build/gameServer                                                                                                    |         15 |      1,310 |        367 |         15 |      1,692 |
+| gameServer/build/gameServer (Files)                                                                                            |          1 |        238 |         13 |          1 |        252 |
+| gameServer/build/gameServer/src                                                                                                |         14 |      1,072 |        354 |         14 |      1,440 |
+| gameServer/build/gameServer/src (Files)                                                                                        |          9 |        752 |        118 |          9 |        879 |
+| gameServer/build/gameServer/src/database                                                                                       |          3 |        137 |        232 |          3 |        372 |
+| gameServer/build/gameServer/src/socket                                                                                         |          2 |        183 |          4 |          2 |        189 |
+| gameServer/src                                                                                                                 |         10 |        672 |        306 |        114 |      1,092 |
+| gameServer/src (Files)                                                                                                         |          6 |        388 |         70 |         65 |        523 |
+| gameServer/src/database                                                                                                        |          3 |        107 |        232 |         21 |        360 |
+| gameServer/src/socket                                                                                                          |          1 |        177 |          4 |         28 |        209 |
+| svelte                                                                                                                         |         40 |      4,781 |         48 |        209 |      5,038 |
+| svelte (Files)                                                                                                                 |         10 |      3,621 |         15 |         26 |      3,662 |
+| svelte/src                                                                                                                     |         30 |      1,160 |         33 |        183 |      1,376 |
+| svelte/src (Files)                                                                                                             |          4 |         60 |          8 |         20 |         88 |
+| svelte/src/components                                                                                                          |         17 |        855 |         21 |        121 |        997 |
+| svelte/src/components (Files)                                                                                                  |          8 |        676 |         11 |         84 |        771 |
+| svelte/src/components/game                                                                                                     |          1 |          8 |          0 |          5 |         13 |
+| svelte/src/components/inputs                                                                                                   |          3 |         18 |          0 |          3 |         21 |
+| svelte/src/components/mobileView                                                                                               |          3 |         71 |          7 |         10 |         88 |
+| svelte/src/components/modals                                                                                                   |          2 |         82 |          3 |         19 |        104 |
+| svelte/src/lib                                                                                                                 |          1 |         37 |          0 |         10 |         47 |
+| svelte/src/routes                                                                                                              |          8 |        208 |          4 |         32 |        244 |
+| svelte/src/routes (Files)                                                                                                      |          5 |         73 |          2 |         16 |         91 |
+| svelte/src/routes/room                                                                                                         |          3 |        135 |          2 |         16 |        153 |
+| svelte/src/routes/room (Files)                                                                                                 |          1 |        122 |          1 |         10 |        133 |
+| svelte/src/routes/room/join                                                                                                    |          2 |         13 |          1 |          6 |         20 |
++--------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                                       | language           | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| /Users/andrew/Dev/fun_projects/svelteGame/.env                                                                                 | Properties         |          0 |          0 |          1 |          1 |
+| /Users/andrew/Dev/fun_projects/svelteGame/default.ts                                                                           | TypeScript         |         13 |          0 |          0 |         13 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/.env                                                                      | Properties         |          0 |          0 |          1 |          1 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/index.js                                                 | JavaScript         |        238 |         13 |          1 |        252 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/        gameServer.emitUpdateRoom(this.roomCode);.js | JavaScript         |        101 |          9 |          1 |        111 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/Game copy.js                                         | JavaScript         |        100 |         35 |          1 |        136 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/Game.js                                              | JavaScript         |        135 |         48 |          1 |        184 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/GameServer.js                                        | JavaScript         |        139 |         10 |          1 |        150 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/Member.js                                            | JavaScript         |         29 |          0 |          1 |         30 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/Player.js                                            | JavaScript         |         14 |          0 |          1 |         15 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/Room copy.js                                         | JavaScript         |         82 |          5 |          1 |         88 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/Room.js                                              | JavaScript         |        125 |          8 |          1 |        134 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/database/db.js                                       | JavaScript         |         96 |          5 |          1 |        102 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/database/dbOld.js                                    | JavaScript         |          1 |        152 |          1 |        154 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/database/models.js                                   | JavaScript         |         40 |         75 |          1 |        116 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/socket/index.js                                      | JavaScript         |        181 |          4 |          1 |        186 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/socket/types.js                                      | JavaScript         |          2 |          0 |          1 |          3 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/gameServer/src/utils.js                                             | JavaScript         |         27 |          3 |          1 |         31 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/globalConsts.js                                                     | JavaScript         |          5 |          0 |          1 |          6 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/build/types.js                                                            | JavaScript         |         20 |          0 |          1 |         21 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/index.ts                                                                  | TypeScript         |        232 |         13 |         25 |        270 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/package-lock.json                                                         | JSON               |      2,624 |          0 |          1 |      2,625 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/package.json                                                              | JSON               |         28 |          0 |          1 |         29 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/src/Game.ts                                                               | TypeScript         |        117 |         48 |         25 |        190 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/src/GameServer.ts                                                         | TypeScript         |        102 |         10 |         19 |        131 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/src/Member.ts                                                             | TypeScript         |         26 |          0 |          3 |         29 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/src/Player.ts                                                             | TypeScript         |         11 |          1 |          2 |         14 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/src/Room.ts                                                               | TypeScript         |        111 |          8 |         14 |        133 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/src/database/db.ts                                                        | TypeScript         |         73 |          5 |          3 |         81 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/src/database/dbOld.ts                                                     | TypeScript         |          0 |        152 |          5 |        157 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/src/database/models.ts                                                    | TypeScript         |         34 |         75 |         13 |        122 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/src/socket/index.ts                                                       | TypeScript         |        177 |          4 |         28 |        209 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/src/utils.ts                                                              | TypeScript         |         21 |          3 |          2 |         26 |
+| /Users/andrew/Dev/fun_projects/svelteGame/gameServer/tsconfig.json                                                             | JSON with Comments |         11 |         84 |          9 |        104 |
+| /Users/andrew/Dev/fun_projects/svelteGame/globalConsts.ts                                                                      | TypeScript         |          2 |          0 |          1 |          3 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/.eslintrc.cjs                                                                 | JavaScript         |         20 |          0 |          1 |         21 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/.prettierrc                                                                   | JSON               |          9 |          0 |          1 |         10 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/README.md                                                                     | Markdown           |         24 |          0 |         15 |         39 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/package-lock.json                                                             | JSON               |      3,475 |          0 |          1 |      3,476 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/package.json                                                                  | JSON               |         39 |          0 |          1 |         40 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/postcss.config.cjs                                                            | JavaScript         |          6 |          0 |          1 |          7 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/app.css                                                                   | CSS                |          3 |          0 |          1 |          4 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/app.d.ts                                                                  | TypeScript         |          2 |          7 |          1 |         10 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/app.html                                                                  | HTML               |         12 |          1 |          1 |         14 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/Chat.svelte                                                    | Svelte             |         49 |          0 |          3 |         52 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/CreateJoin.svelte                                              | Svelte             |        151 |          0 |         21 |        172 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/GameRules.svelte                                               | Svelte             |         94 |          1 |          9 |        104 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/InviteLink.svelte                                              | Svelte             |         45 |          1 |          7 |         53 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/NavBar.svelte                                                  | Svelte             |         18 |          0 |          3 |         21 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/PackSelection.svelte                                           | Svelte             |        116 |          2 |         19 |        137 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/RoomSettings.svelte                                            | Svelte             |        111 |          4 |         14 |        129 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/UserDisplay.svelte                                             | Svelte             |         92 |          3 |          8 |        103 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/game/Game.svelte                                               | Svelte             |          8 |          0 |          5 |         13 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/inputs/BoolInput.svelte                                        | Svelte             |          4 |          0 |          1 |          5 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/inputs/NumberInput.svelte                                      | Svelte             |          7 |          0 |          1 |          8 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/inputs/TextInput.svelte                                        | Svelte             |          7 |          0 |          1 |          8 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/mobileView/MobileNavBox.svelte                                 | Svelte             |         25 |          1 |          2 |         28 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/mobileView/MobileNavItem.svelte                                | Svelte             |          0 |          0 |          1 |          1 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/mobileView/MobileRoom.svelte                                   | Svelte             |         46 |          6 |          7 |         59 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/modals/Modal.svelte                                            | Svelte             |         72 |          3 |         17 |         92 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/components/modals/SettingsModal.svelte                                    | Svelte             |         10 |          0 |          2 |         12 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/lib/realtime.ts                                                           | TypeScript         |         37 |          0 |         10 |         47 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/routes/+layout.svelte                                                     | Svelte             |          7 |          1 |          2 |         10 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/routes/+page.svelte                                                       | Svelte             |         50 |          1 |          6 |         57 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/routes/+page.ts                                                           | TypeScript         |          8 |          0 |          1 |          9 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/routes/Create.svelte                                                      | Svelte             |          5 |          0 |          3 |          8 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/routes/Join.svelte                                                        | Svelte             |          3 |          0 |          4 |          7 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/routes/room/+page.svelte                                                  | Svelte             |        122 |          1 |         10 |        133 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/routes/room/join/+page.svelte                                             | Svelte             |          8 |          0 |          2 |         10 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/routes/room/join/+page.ts                                                 | TypeScript         |          5 |          1 |          4 |         10 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/src/stores.ts                                                                 | TypeScript         |         43 |          0 |         17 |         60 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/svelte.config.js                                                              | JavaScript         |          9 |          3 |          4 |         16 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/tailwind.config.cjs                                                           | JavaScript         |         15 |          1 |          0 |         16 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/tsconfig.json                                                                 | JSON with Comments |         13 |         10 |          0 |         23 |
+| /Users/andrew/Dev/fun_projects/svelteGame/svelte/vite.config.js                                                                | JavaScript         |         11 |          1 |          2 |         14 |
+| /Users/andrew/Dev/fun_projects/svelteGame/types.ts                                                                             | TypeScript         |        141 |          9 |         34 |        184 |
+| Total                                                                                                                          |                    |      9,839 |        827 |        413 |     11,079 |
++--------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

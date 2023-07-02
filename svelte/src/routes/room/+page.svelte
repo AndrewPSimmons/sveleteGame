@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
     import Icon from "@iconify/svelte"
-    import {userData, roomData, storeSocket, isUnopenedChats, isSideBarOpen} from "../../stores";
+    import {userData, roomData, gameData, storeSocket, isUnopenedChats, isSideBarOpen} from "../../stores";
     import {socketInit} from "../../lib/realtime"
 	import { stringify } from "postcss";
 	import { io } from "socket.io-client";
@@ -10,8 +10,11 @@
 	import MobileRoom from "../../components/mobileView/MobileRoom.svelte";
 	import Game from "../../components/game/Game.svelte";
 	import SettingsModal from "src/components/modals/SettingsModal.svelte";
-	import { ErrorActions } from "../../../../types";
+	import { ErrorActions, GameState } from "../../../../types";
 	import RoomSettings from "src/components/RoomSettings.svelte";
+	import GameRules from "src/components/GameRules.svelte";
+	import PackSelection from "src/components/PackSelection.svelte";
+	import InviteLink from "src/components/InviteLink.svelte";
 
     onMount(()=> {
         const socket = socketInit($userData)
@@ -66,12 +69,16 @@
 
 <div class="h-full sm:flex  items-center justify-between hidden">
     <SettingsModal open={isSettingsModalOpen} onClose={()=>isSettingsModalOpen = false}/>
+
+    <!-- Left side of screen -->
     <div class="w-content h-full bg-pink1 flex  justify-between">
         <div class={"flex-col " +( $isSideBarOpen ? " flex": " hidden")}>
+
             <div class="h-[5%] bg-gradient-to-r from to-blue-500  from-blue2 leftItem flex justify-between items-center">
                 <button class="h-full" on:click={settingsClicked}>
                     <Icon icon="material-symbols:settings" height={"100%"} />
                 </button>
+                <InviteLink/>
                 {$roomData.roomCode}
 
             </div>
@@ -96,18 +103,27 @@
                     </button>
                 </div>
                 <div>
-                    <Icon icon={'material-symbols:keyboard-double-arrow-left-rounded'} width="100%" rotate={isSideBarOpen?0:2}/>
+                    <Icon icon={'material-symbols:keyboard-double-arrow-left-rounded'} width="100%" rotate={$isSideBarOpen?0:2}/>
                 </div>
         </div>
     </div>
-    <div class="w-full h-full p-2 flex justify-betweem items-center space-x-1">
-        <div class="w-[50%] rightItem">
-            <RoomSettings/>
+
+    <!-- Right side of screen -->
+    {#if $gameData.state === GameState.setup}
+        <div class="w-full h-full p-2 flex justify-betweem items-center space-x-1">
+            <div class="w-[50%] rightItem">
+                <PackSelection/>
+            </div>
+            <div class="w-[50%] rightItem">
+                <div class="h-full flex flex-col">
+                    <RoomSettings/>
+                    <GameRules/>
+                </div>
+            </div>
         </div>
-        <div class="w-[50%] rightItem">
-            <RoomSettings/>
-        </div>
-    </div>
+    {:else}
+        <Game/>
+    {/if}
 
 </div>
 

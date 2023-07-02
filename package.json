@@ -1,0 +1,20 @@
+{
+  "name": "sveltegame",
+  "version": "1.0.0",
+  "description": "so we can run npm commands outside of any specific env",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clientBuild": "cd svelte && npm run build",
+    "clientDev": "cd svelte && npm run dev",
+    "serverBuild": "cd gameServer && npm run build",
+    "serverDev": "cd gameServer && npm run dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sveltejs/adapter-vercel": "^3.0.1",
+    "svelte": "^3.59.2",
+    "vite": "^4.3.9"
+  }
+}

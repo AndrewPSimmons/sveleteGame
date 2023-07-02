@@ -1,0 +1,155 @@
+{
+    "state": "submitPhase",
+    "gameRules": {
+        "handCount": 10,
+        "blackCardMaxPick": 1,
+        "winningScore": 10,
+        "blankCardUses": 1
+    },
+    "packIds": [
+        1
+    ],
+    "blackCard": {
+        "_id": "6178b70f8c66f70ddcc6567f",
+        "text": "Your security clearance has been suspended beause of your shameful past involving _.",
+        "pick": 1,
+        "pack": 1,
+        "id": 1282
+    },
+    "roomCode": "TE",
+    "player": {
+        "hand": [
+            {
+                "_id": "61265868044d2e7dc8b9bb68",
+                "text": "An endless stream of diarrhea.",
+                "pack": 1,
+                "id": 1000184
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bf98",
+                "text": "Wiping her bum.",
+                "pack": 1,
+                "id": 1001256
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bf1e",
+                "text": "The past.",
+                "pack": 1,
+                "id": 1001134
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bc7f",
+                "text": "Flightless birds.",
+                "pack": 1,
+                "id": 1000463
+            },
+            {
+                "_id": "61265868044d2e7dc8b9be01",
+                "text": "Porn stars.",
+                "pack": 1,
+                "id": 1000849
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bb25",
+                "text": "A slab of VB and a pack of durries.",
+                "pack": 1,
+                "id": 1000117
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bac8",
+                "text": "A brain tumour.",
+                "pack": 1,
+                "id": 1000024
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bc3a",
+                "text": "Dwayne \"The Rock\" Johnson.",
+                "pack": 1,
+                "id": 1000394
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bf8d",
+                "text": "Whiskas® Catmilk.",
+                "pack": 1,
+                "id": 1001245
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bf2e",
+                "text": "The Royal Canadian Mounted Police.",
+                "pack": 1,
+                "id": 1001150
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bb68",
+                "text": "An endless stream of diarrhea.",
+                "pack": 1,
+                "id": 1000184
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bf98",
+                "text": "Wiping her bum.",
+                "pack": 1,
+                "id": 1001256
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bf1e",
+                "text": "The past.",
+                "pack": 1,
+                "id": 1001134
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bc7f",
+                "text": "Flightless birds.",
+                "pack": 1,
+                "id": 1000463
+            },
+            {
+                "_id": "61265868044d2e7dc8b9be01",
+                "text": "Porn stars.",
+                "pack": 1,
+                "id": 1000849
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bb25",
+                "text": "A slab of VB and a pack of durries.",
+                "pack": 1,
+                "id": 1000117
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bac8",
+                "text": "A brain tumour.",
+                "pack": 1,
+                "id": 1000024
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bc3a",
+                "text": "Dwayne \"The Rock\" Johnson.",
+                "pack": 1,
+                "id": 1000394
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bf8d",
+                "text": "Whiskas® Catmilk.",
+                "pack": 1,
+                "id": 1001245
+            },
+            {
+                "_id": "61265868044d2e7dc8b9bf2e",
+                "text": "The Royal Canadian Mounted Police.",
+                "pack": 1,
+                "id": 1001150
+            }
+        ],
+        "wins": [],
+        "isSubmitted": false,
+        "member": {
+            "isPlayer": false,
+            "isSpectator": false,
+            "isHost": true,
+            "socketId": "2dm8uyejOM2oN7phAAAD",
+            "username": "asefasef",
+            "roomCode": "TE",
+            "id": "POjIBJEKBX2fBN"
+        }
+    }
+} 

@@ -50,14 +50,12 @@
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div class="modal-background" on:click={close}></div>
 
-	<div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
+	<div class="modal flex flex-col" role="dialog" aria-modal="true" bind:this={modal}>
 		<slot name="header"></slot>
-		<hr>
 		<slot></slot>
-		<hr>
 
 		<!-- svelte-ignore a11y-autofocus -->
-		<button  on:click={close}>close modal</button>
+		<!-- <button  on:click={close}>close modal</button> -->
 	</div>
 {/if}
 
@@ -80,13 +78,15 @@
 		max-height: calc(100vh - 4em);
 		overflow: auto;
 		transform: translate(-50%,-50%);
-		padding: 1em;
+		
 		border-radius: 0.2em;
 		background: white;
-		@apply h-full;
+		@apply p-4 h-full;
 	}
 
 	button {
 		display: block;
+		position: relative;
+		height: 0;
 	}
 </style>

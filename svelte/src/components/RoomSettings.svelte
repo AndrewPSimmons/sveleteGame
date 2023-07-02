@@ -38,52 +38,54 @@
 
 </script>
 
+<div class="h-full sm:p-2">
+    <div class="roomSettings w-full h-full bg-slate-300 rounded-md " >
+        <!-- {JSON.stringify($roomData.roomSettings)} -->
+        <h2>Room Settings</h2>
+        <form class="w-full h-full py-2 px-4" on:submit|preventDefault={submitFunction}>
+            <div class="formRow">
+                <div>Max Members</div>
+                <input type="number" bind:value={localSettings.maxMembers} disabled={!$userData.isHost}>
+            </div>
+            <div class="formRow">
+                <div>Max Players</div>
+                <input type="number" bind:value={localSettings.maxPlayers} disabled={!$userData.isHost}>
+            </div>
+            <div class="formRow">
+                <div>Spectator Chat Rule</div>
+                <input type="radio" id="all" name="spectatorChatRule" value="all" 
+                        checked={localSettings.spectatorChatRule === "all"} 
+                        on:change={()=>{updateRoomData("spectatorChatRule", "all")}} disabled={!$userData.isHost}>
+                <label for="all">All</label>
 
-<div class="roomSettings w-full h-full bg-slate-300 " >
-    <!-- {JSON.stringify($roomData.roomSettings)} -->
-    <form class="w-full h-full py-2 px-4" on:submit|preventDefault={submitFunction}>
-        <div class="formRow">
-            <div>Max Members</div>
-            <input type="number" bind:value={localSettings.maxMembers} disabled={!$userData.isHost}>
-        </div>
-        <div class="formRow">
-            <div>Max Players</div>
-            <input type="number" bind:value={localSettings.maxPlayers} disabled={!$userData.isHost}>
-        </div>
-        <div class="formRow">
-            <div>Spectator Chat Rule</div>
-            <input type="radio" id="all" name="spectatorChatRule" value="all" 
-                    checked={localSettings.spectatorChatRule === "all"} 
-                    on:change={()=>{updateRoomData("spectatorChatRule", "all")}} disabled={!$userData.isHost}>
-            <label for="all">All</label>
+                <input type="radio" id="gameOnly" name="spectatorChatRule" value="gameOnly" 
+                        checked={localSettings.spectatorChatRule === "gameOnly"} 
+                        on:change={()=>{updateRoomData("spectatorChatRule", "gameOnly")}} disabled={!$userData.isHost}>
+                <label for="gameOnly">Game Only</label>
 
-            <input type="radio" id="gameOnly" name="spectatorChatRule" value="gameOnly" 
-                    checked={localSettings.spectatorChatRule === "gameOnly"} 
-                    on:change={()=>{updateRoomData("spectatorChatRule", "gameOnly")}} disabled={!$userData.isHost}>
-            <label for="gameOnly">Game Only</label>
+                <input type="radio" id="lobbyOnly" name="spectatorChatRule" value="lobbyOnly"
+                        checked={localSettings.spectatorChatRule === "lobbyOnly"}
+                        on:change={()=>{updateRoomData("spectatorChatRule", "lobbyOnly")}} disabled={!$userData.isHost}>
+                <label for="lobbyOnly">Lobby Only</label>
 
-            <input type="radio" id="lobbyOnly" name="spectatorChatRule" value="lobbyOnly"
-                    checked={localSettings.spectatorChatRule === "lobbyOnly"}
-                    on:change={()=>{updateRoomData("spectatorChatRule", "lobbyOnly")}} disabled={!$userData.isHost}>
-            <label for="lobbyOnly">Lobby Only</label>
+                <input type="radio" id="none" name="spectatorChatRule" value="none"
+                        checked={localSettings.spectatorChatRule === "none"}
+                        on:change={()=>{updateRoomData("spectatorChatRule", "none")}} disabled={!$userData.isHost}>
+                <label for="none">None</label>
+            </div>
+            <div class="formRow">
+                <div>Public Lobby</div>
+                <input type="checkbox" bind:checked={localSettings.publicLobby} 
+                        on:change={()=>{updateRoomData("publicLobby", localSettings.publicLobby)}} disabled={!$userData.isHost}>
+            </div>
 
-            <input type="radio" id="none" name="spectatorChatRule" value="none"
-                    checked={localSettings.spectatorChatRule === "none"}
-                    on:change={()=>{updateRoomData("spectatorChatRule", "none")}} disabled={!$userData.isHost}>
-            <label for="none">None</label>
-        </div>
-        <div class="formRow">
-            <div>Public Lobby</div>
-            <input type="checkbox" bind:checked={localSettings.publicLobby} 
-                    on:change={()=>{updateRoomData("publicLobby", localSettings.publicLobby)}} disabled={!$userData.isHost}>
-        </div>
-
-        <!-- <TextInput value="Testing" />
-        <NumberInput value={1} />
-        <BoolInput value={true} /> -->
-        <button type="submit" disabled={!$userData.isHost}>Submit</button>
-        <div hidden={!showUpdateNotification} class="updateNotification">Updated</div>
-    </form>
+            <!-- <TextInput value="Testing" />
+            <NumberInput value={1} />
+            <BoolInput value={true} /> -->
+            <button type="submit" disabled={!$userData.isHost}>Submit</button>
+            <div hidden={!showUpdateNotification} class="updateNotification">Updated</div>
+        </form>
+    </div>
 </div>
 
 <style>

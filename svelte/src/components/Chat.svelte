@@ -33,7 +33,7 @@
     <div class="h-full flex flex-col justify-end bg-red-200 border-2 sm:rounded-xl" on:mouseenter={chatFocused}>
         <div class="overflow-scroll flex flex-col-reverse p-2">
             {#each $chatLog as message}
-            <div class="flex ">
+            <div class="flex no-wrap">
                 <div >
                     {message.username}&nbsp-&nbsp;
                 </div>

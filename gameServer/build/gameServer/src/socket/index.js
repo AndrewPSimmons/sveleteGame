@@ -20,6 +20,7 @@ function configureSocket(io, socket) {
     if (member) {
         member.socketId = socket.id;
     }
+    // Update player socketid if player exists
     socket.on("disconnect", () => {
         console.log("Disconnected ", socket.id);
         const member = GameServer_1.gameServer.getMember(userData.id);
@@ -52,9 +53,82 @@ function configureSocket(io, socket) {
             return;
         }
         socket.join(data.roomCode);
-        GameServer_1.gameServer.emitUpdateRoom(data.roomCode);
+        GameServer_1.gameServer.emitUpdateRoomData(data.roomCode);
+        console.log("Player joining room, about to emit gameData");
+        GameServer_1.gameServer.emitUpdateGameDataWithPlayer(data.roomCode);
+        room.members.forEach(member => {
+            GameServer_1.gameServer.emitPlayerHand(data.roomCode, member.id);
+        });
         //TODO: The member should already be in the gameServer.rooms object[roomCode].members
         //Validate that the userID is in the room and then add to the socket room
+    });
+    socket.on("kickingMember", (memberId) => {
+        if (!userData.isHost) {
+            GameServer_1.gameServer.emitError(socket.id, "User is not host when kicking member", []);
+            return;
+        }
+        const room = GameServer_1.gameServer.getRoom(userData.roomCode);
+        if (room === undefined) {
+            GameServer_1.gameServer.emitError(socket.id, "Room not found when kicking member", []);
+            return;
+        }
+        const member = room.getMember(memberId);
+        if (member === undefined) {
+            GameServer_1.gameServer.emitError(socket.id, "Member not found when kicking member", []);
+            return;
+        }
+        room.kickMember(memberId);
+    });
+    socket.on("becomingSpectator", () => {
+        console.log("Changing to spectator");
+        const room = GameServer_1.gameServer.getRoom(userData.roomCode);
+        if (room === undefined) {
+            GameServer_1.gameServer.emitError(socket.id, "Room not found when becoming spectator", []);
+            return;
+        }
+        const member = room.getMember(userData.id);
+        if (member === undefined) {
+            GameServer_1.gameServer.emitError(socket.id, "Member not found when becoming spectator", []);
+            return;
+        }
+        room.becomeSpectator(member.id);
+    });
+    socket.on("becomingPlayer", () => {
+        const room = GameServer_1.gameServer.getRoom(userData.roomCode);
+        if (room === undefined) {
+            GameServer_1.gameServer.emitError(socket.id, "Room not found when becoming player", []);
+            return;
+        }
+        const member = room.getMember(userData.id);
+        if (member === undefined) {
+            GameServer_1.gameServer.emitError(socket.id, "Member not found when becoming player", []);
+            return;
+        }
+        room.becomePlayer(member.id);
+    });
+    socket.on("requestingBasePacks", () => {
+    });
+    socket.on("addingPack", (pack_id) => {
+        console.log("In adding pack", pack_id);
+        const room = GameServer_1.gameServer.getRoom(userData.roomCode);
+        if (room === undefined) {
+            GameServer_1.gameServer.emitError(socket.id, "Room not found when adding pack", []);
+            return;
+        }
+        room.game.addPack(pack_id);
+        // gameServer.emitUpdateGameDataKeyVal(userData.roomCode, "packIds" as keyof GameData, room.game.packIds)
+        GameServer_1.gameServer.emitUpdateGameDataWithPlayer(userData.roomCode);
+    });
+    socket.on("removingPack", (pack_id) => {
+        console.log("In removing pack", pack_id);
+        const room = GameServer_1.gameServer.getRoom(userData.roomCode);
+        if (room === undefined) {
+            GameServer_1.gameServer.emitError(socket.id, "Room not found when removing pack", []);
+            return;
+        }
+        room.game.removePack(pack_id);
+        // gameServer.emitUpdateGameDataKeyVal(userData.roomCode, "packIds" as keyof GameData, room.game.packIds)
+        GameServer_1.gameServer.emitUpdateGameDataWithPlayer(userData.roomCode);
     });
     socket.on("submittingWhiteCards", (data) => {
         const room = GameServer_1.gameServer.getRoom(userData.roomCode);
@@ -73,7 +147,21 @@ function configureSocket(io, socket) {
             GameServer_1.gameServer.emitError(socket.id, "Game not found when submitting white cards", []);
             return;
         }
-        game.submitCard(member.id, data);
+        game.submitCards(member.id, data);
+    });
+    socket.on("selectingWinningCards", (data) => {
+        console.log("Selecting winning cards", data);
+        const room = GameServer_1.gameServer.getRoom(userData.roomCode);
+        if (room === undefined) {
+            GameServer_1.gameServer.emitError(socket.id, "Room not found when selecting winning cards", []);
+            return;
+        }
+        const game = room.getGame();
+        if (game === null) {
+            GameServer_1.gameServer.emitError(socket.id, "Game not found when selecting winning cards", []);
+            return;
+        }
+        game.selectWinner(data);
     });
     socket.on("updatingRoomSettings", (roomSettings) => {
         const room = GameServer_1.gameServer.getRoom(userData.roomCode);
@@ -82,7 +170,7 @@ function configureSocket(io, socket) {
             return;
         }
         room.updateRoomSettings(roomSettings);
-        GameServer_1.gameServer.emitUpdateRoom(userData.roomCode);
+        GameServer_1.gameServer.emitUpdateRoomData(userData.roomCode);
     });
     socket.on("updatingRoomSettingSingle", (roomSetting, value) => {
         console.log("Trying to update room setting with key vlue pair", roomSetting, value);
@@ -96,7 +184,33 @@ function configureSocket(io, socket) {
         };
         console.log(partial);
         room.updateRoomSettings(partial);
-        GameServer_1.gameServer.emitUpdateRoom(userData.roomCode);
+        GameServer_1.gameServer.emitUpdateRoomData(userData.roomCode);
+    });
+    socket.on("updatingGameRules", (gameRules) => {
+        const room = GameServer_1.gameServer.getRoom(userData.roomCode);
+        if (room === undefined) {
+            GameServer_1.gameServer.emitError(socket.id, "Room not found when updating game rules", []);
+            return;
+        }
+        room.game.updateGameRules(gameRules);
+    });
+    socket.on("startingGame", () => {
+        console.log("Starting ag==");
+        const room = GameServer_1.gameServer.getRoom(userData.roomCode);
+        if (room === undefined) {
+            GameServer_1.gameServer.emitError(socket.id, "Room not found when starting game", []);
+            return;
+        }
+        room.startGame();
+    });
+    socket.on("endingGame", () => {
+        console.log("Ending game");
+        const room = GameServer_1.gameServer.getRoom(userData.roomCode);
+        if (room === undefined) {
+            GameServer_1.gameServer.emitError(socket.id, "Room not found when ending game", []);
+            return;
+        }
+        room.endGame();
     });
     return socket;
 }

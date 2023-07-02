@@ -1,8 +1,18 @@
 import { browser } from "$app/environment";
 import type { Socket } from "socket.io-client";
 import { get, writable, type Writable } from "svelte/store";
-import type { ChatMessage, ClientToServerEvents, RoomData, RoomSettings, ServerToClientEvents,  UserData } from "../../types";
-
+import type { ChatMessage,  
+  ClientToServerEvents,  
+  GameData,  
+  RoomData,  
+  RoomSettings,  
+  ServerToClientEvents,   
+  UserData, 
+  WhiteCard,
+  PlayerData,
+  GameDataWithPlayer
+} from "../../types";
+import {defaultGameData} from "../../default"
 
 
 const createWritableStore = <T>(key: string, initValue: T): Writable<T> => {
@@ -34,14 +44,16 @@ const createWritableStore = <T>(key: string, initValue: T): Writable<T> => {
 
 export const count = writable(0);
 
-export const gameData = writable();
-
+export const gameData = writable<GameDataWithPlayer>(defaultGameData());
+export const playerData = writable<PlayerData | null>({} as PlayerData);
+export const playerHand = writable<WhiteCard[]>([]);
 export const roomData = writable<RoomData>({
   roomCode: "",
   members: [],
   roomSettings: {} as RoomSettings
 });
 
+export const selectedCards = writable<WhiteCard[]>([]);
 export const storeSocket = writable<Socket<ServerToClientEvents, ClientToServerEvents>>();
 
 export const isSideBarOpen = writable<boolean>(true);
@@ -58,3 +70,12 @@ export const homeFormData = writable({
 
 
 export const mobileMenuValue = writable<"table"|"chat">("table");
+
+// Subscribe to stores
+
+//Update is host when roomData changes
+roomData.subscribe((val) => {
+  userData.update((uData) => {
+    return {...uData, isHost: val.members.find((member) => member.id === uData.id)?.isHost ?? false}
+  })
+})
