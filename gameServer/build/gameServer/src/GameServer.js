@@ -57,7 +57,13 @@ class GameServer {
                 origin: [`https://${globalConsts_1.socket_domain}`, `http://${globalConsts_1.socket_domain}`, `https://${globalConsts_1.api_domain}`, `http://${globalConsts_1.api_domain}`, 'http://localhost:5174', 'http://localhost:3000'] //methods: ["GET", "POST"]
             }
         });
-        this.expressApp.use(cors.default({ origin: ['http://localhost:5174', `https://${globalConsts_1.socket_domain}`, `http://${globalConsts_1.socket_domain}`, `https://${globalConsts_1.api_domain}`, `http://${globalConsts_1.api_domain}`] }));
+        this.expressApp.use(cors.default({ origin: ['http://localhost:5174',
+                `https://${globalConsts_1.socket_domain}`,
+                `http://${globalConsts_1.socket_domain}`,
+                `https://${globalConsts_1.api_domain}`,
+                `http://${globalConsts_1.api_domain}`,
+                `https://${globalConsts_1.clientDomain}`,
+                `http://${globalConsts_1.clientDomain}`] }));
     }
     //Takes in the host member and password and creates a room, returns the room code
     //Processes

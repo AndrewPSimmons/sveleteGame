@@ -8,7 +8,7 @@ import randomstring from 'randomstring';
 import { Server, Socket } from "socket.io";
 import { ClientToServerEvents, ErrorActions, GameData, InterServerEvents, PackData, RoundWin, ServerToClientEvents, SocketData } from "../../types";
 import DB from "./database/db";
-import {socket_domain, api_domain} from "../../globalConsts"
+import {socket_domain, api_domain, clientDomain, clientDomainLong} from "../../globalConsts"
 
 export class GameServer {
     rooms = new Map<string, Room>();
@@ -24,7 +24,13 @@ export class GameServer {
     });
     constructor() {
         this.expressApp.use(cors.default(
-            { origin: ['http://localhost:5174', `https://${socket_domain}`, `http://${socket_domain}`, `https://${api_domain}`, `http://${api_domain}`] }
+            { origin: ['http://localhost:5174', 
+            `https://${socket_domain}`, 
+            `http://${socket_domain}`, 
+            `https://${api_domain}`, 
+            `http://${api_domain}`,
+            `https://${clientDomain}`,
+            `http://${clientDomain}`] }
         ))
     }
 

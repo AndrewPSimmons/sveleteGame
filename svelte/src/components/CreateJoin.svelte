@@ -3,8 +3,7 @@
 	import { homeFormData } from '../stores';
 	import { userData } from '../stores';
 
-	const api_domain = 'localhost:3000';
-
+	import { api_domain } from '../../../globalConsts';
 	userData.subscribe((value) => {
 		console.log("In the subscribe", value);
 	})

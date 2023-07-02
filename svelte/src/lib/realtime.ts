@@ -1,10 +1,11 @@
 import ioClient, { Socket } from 'socket.io-client'
 import { gameData, roomData, chatLog, playerHand, userData as userDataStore, selectedCards } from '../stores'
 import type { ServerToClientEvents, ClientToServerEvents, UserData } from "../../../types"
-const api_endpoint = 'http://localhost:3000'
+import { api_domain, socket_domain } from '../../../globalConsts';
+
 
 export const socketInit = (userData: UserData) => {
-    const io: Socket<ServerToClientEvents, ClientToServerEvents> = ioClient(api_endpoint, {
+    const io: Socket<ServerToClientEvents, ClientToServerEvents> = ioClient(api_domain, {
         query: {...userData}
     })
 
