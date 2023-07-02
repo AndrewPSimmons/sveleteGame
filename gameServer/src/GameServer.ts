@@ -33,9 +33,7 @@ export class GameServer {
         `http://${clientDomain}`]
 
         console.log("Urls to allow cors: ", urls);
-        this.expressApp.use(cors.default(
-            { origin: urls }
-        ))
+        this.expressApp.use(cors.default())
     }
 
 
