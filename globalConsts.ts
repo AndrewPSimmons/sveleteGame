@@ -11,9 +11,9 @@ let clientDomain: string;
 let clientDomainLong: string;
 if(process.env.NODE_ENV === 'production'){
     socket_domain = '34.206.157.48'
-    api_domain = '34.206.157.48'
+    api_domain = 'api.playcah.com'
     clientDomain = "playcah.com"
-    clientDomainLong = 'https://play-cahs-velte-8s3z0890n-andrewpsimmons.vercel.app/'
+    clientDomainLong = 'play-cahs-velte-kit.vercel.app'
 }else{
     socket_domain = 'localhost:3001'
     api_domain = 'localhost:3000'

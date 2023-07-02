@@ -52,7 +52,7 @@
 			username: $homeFormData.username,
 			password: $homeFormData.password
 		};
-		const url = `http://${api_domain}/createRoom?`+ new URLSearchParams(data);
+		const url = `https://${api_domain}/createRoom?`+ new URLSearchParams(data);
 
 		//GET request to create room http method is GET
 		const response = await fetch(url, {
