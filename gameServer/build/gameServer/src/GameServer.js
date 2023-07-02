@@ -65,7 +65,9 @@ class GameServer {
             `https://${globalConsts_1.clientDomain}`,
             `http://${globalConsts_1.clientDomain}`];
         console.log("Urls to allow cors: ", urls);
-        this.expressApp.use(cors.default());
+        this.expressApp.use(cors.default({
+            origin: "*",
+        }));
     }
     //Takes in the host member and password and creates a room, returns the room code
     //Processes
