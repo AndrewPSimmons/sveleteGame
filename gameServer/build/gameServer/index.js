@@ -41,6 +41,7 @@ GameServer_1.gameServer.expressApp.get('/createRoom', (req, res) => {
     //2 Generate host member and ceate room
     const host = GameServer_1.gameServer.createMember(username, newRoom.roomCode, { isHost: true });
     newRoom.joinMember(host, password);
+    res.header("Access-Control-Allow-Origin", "*");
     res.status(200).json({
         status: "success",
         host: host,
@@ -109,6 +110,7 @@ GameServer_1.gameServer.expressApp.get('/joinRoom', (req, res) => {
         GameServer_1.gameServer.destroyMember(newMember.id);
         return;
     }
+    res.header("Access-Control-Allow-Origin", "*");
     res.status(200).json({
         status: "success",
         member: newMember,
@@ -116,6 +118,7 @@ GameServer_1.gameServer.expressApp.get('/joinRoom', (req, res) => {
     });
 });
 GameServer_1.gameServer.expressApp.get("/packs/official", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.header("Access-Control-Allow-Origin", "*");
     res.status(200).json({
         status: "success",
         packs: yield GameServer_1.gameServer.getOfficialPacks()

@@ -39,6 +39,7 @@ gameServer.expressApp.get('/createRoom', (req: express.Request, res: express.Res
     const host = gameServer.createMember(username, newRoom.roomCode, { isHost: true })
     newRoom.joinMember(host, password)
 
+    res.header("Access-Control-Allow-Origin", "*")
     res.status(200).json({
         status: "success",
         host: host,
@@ -112,6 +113,7 @@ gameServer.expressApp.get('/joinRoom', (req: express.Request, res: express.Respo
         gameServer.destroyMember(newMember.id)
         return
     }
+    res.header("Access-Control-Allow-Origin", "*")
 
     res.status(200).json({
         status: "success",
@@ -121,6 +123,8 @@ gameServer.expressApp.get('/joinRoom', (req: express.Request, res: express.Respo
 })
 
 gameServer.expressApp.get("/packs/official", async (req: express.Request, res: express.Response) => {
+    res.header("Access-Control-Allow-Origin", "*")
+
     res.status(200).json({
         status: "success",
         packs: await gameServer.getOfficialPacks()
