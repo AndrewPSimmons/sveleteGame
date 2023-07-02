@@ -21,4 +21,5 @@ if (process.env.NODE_ENV === 'production') {
 else {
     exports.socket_domain = socket_domain = 'localhost:5174';
     exports.api_domain = api_domain = 'localhost:3000';
+    exports.clientDomain = clientDomain = "playcah.com";
 }
