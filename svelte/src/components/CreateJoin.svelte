@@ -24,7 +24,9 @@
 			roomCode: $homeFormData.roomCode
 		};
 		const url = `http://${api_domain}/joinRoom?` + new URLSearchParams(data);
-		const response = await fetch(url)
+		const response = await fetch(url, {
+			method: 'GET',
+		})
 		const resData = await response.json();
 		if(response.status === 200){
 			console.log("Room joined");
@@ -53,10 +55,9 @@
 		const url = `http://${api_domain}/createRoom?`+ new URLSearchParams(data);
 
 		//GET request to create room http method is GET
-		const response = await fetch(url , {
+		const response = await fetch(url, {
 			method: 'GET',
-
-		});
+		})
 
 		const resData = await response.json();
 		if(response.status === 200){

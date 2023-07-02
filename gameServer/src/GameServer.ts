@@ -16,6 +16,7 @@ export class GameServer {
     // socket: Socket<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
     expressApp = express.default()
     server = http.createServer(this.expressApp)
+    
     //Make io extend Socket type 
     io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(this.server, {
         cors: {
@@ -23,14 +24,17 @@ export class GameServer {
         }
     });
     constructor() {
+        const urls = ['http://localhost:5174', 'http://localhost:3000', 
+        `https://${socket_domain}`, 
+        `http://${socket_domain}`, 
+        `https://${api_domain}`, 
+        `http://${api_domain}`,
+        `https://${clientDomain}`,
+        `http://${clientDomain}`]
+
+        console.log("Urls to allow cors: ", urls);
         this.expressApp.use(cors.default(
-            { origin: ['http://localhost:5174', 
-            `https://${socket_domain}`, 
-            `http://${socket_domain}`, 
-            `https://${api_domain}`, 
-            `http://${api_domain}`,
-            `https://${clientDomain}`,
-            `http://${clientDomain}`] }
+            { origin: urls }
         ))
     }
 

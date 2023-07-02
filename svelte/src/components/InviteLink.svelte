@@ -1,7 +1,8 @@
 <script lang="ts">
 
     import { roomData } from "src/stores";
-    const domain = "localhost:5173"
+	import { api_domain, socket_domain } from "../../../globalConsts";
+
     let showBubble = false;
     const copyFunction = () => {
         showBubble = true;
@@ -9,7 +10,7 @@
         // copyText.select();
         // copyText.setSelectionRange(0, 99999); /* For mobile devices */
         // document.execCommand("copy");
-        navigator.clipboard.writeText(`${domain}/room/join?roomCode=` + $roomData.roomCode);
+        navigator.clipboard.writeText(`${socket_domain}/room/join?roomCode=` + $roomData.roomCode);
         setTimeout(() => {
             showBubble = false;
         }, 1500);
