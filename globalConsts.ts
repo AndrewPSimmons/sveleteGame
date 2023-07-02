@@ -15,7 +15,7 @@ if(process.env.NODE_ENV === 'production'){
     clientDomain = "playcah.com"
     clientDomainLong = 'https://play-cahs-velte-8s3z0890n-andrewpsimmons.vercel.app/'
 }else{
-    socket_domain = 'localhost:5174'
+    socket_domain = 'localhost:3001'
     api_domain = 'localhost:3000'
     clientDomain = "playcah.com"
 }

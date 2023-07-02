@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { homeFormData } from '../stores';
 	import { userData } from '../stores';
-
+	import axios from 'axios';
 	import { api_domain } from '../../../globalConsts';
 	userData.subscribe((value) => {
 		console.log("In the subscribe", value);
@@ -58,6 +58,9 @@
 		const response = await fetch(url, {
 			method: 'GET',
 		})
+		console.log("Normal Repsonse", response);
+		const axiosResponse = await axios.get(url);
+		console.log("Axios Response", axiosResponse);
 
 		const resData = await response.json();
 		if(response.status === 200){

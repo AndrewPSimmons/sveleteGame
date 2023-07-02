@@ -5,7 +5,7 @@ import { api_domain, socket_domain } from '../../../globalConsts';
 
 
 export const socketInit = (userData: UserData) => {
-    const io: Socket<ServerToClientEvents, ClientToServerEvents> = ioClient(api_domain, {
+    const io: Socket<ServerToClientEvents, ClientToServerEvents> = ioClient(socket_domain, {
         query: {...userData}
     })
 
