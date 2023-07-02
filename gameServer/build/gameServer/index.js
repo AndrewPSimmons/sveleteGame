@@ -131,9 +131,12 @@ GameServer_1.gameServer.expressApp.get("/packs/official", (req, res) => __awaite
 GameServer_1.gameServer.io.on("connection", (socket) => {
     socket = (0, socket_1.configureSocket)(GameServer_1.gameServer.io, socket);
 });
-GameServer_1.gameServer.server.listen(3000, () => {
-    console.log("Listening on port 3000");
+GameServer_1.gameServer.expressApp.listen(3000, () => {
+    console.log("Express-- Listening on port 3000");
     takeCommand();
+});
+GameServer_1.gameServer.server.listen(3001, () => {
+    console.log("Server-- Listening on port 3001");
 });
 const rl = readline_1.default.createInterface({
     input: process.stdin,

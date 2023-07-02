@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'production') {
     exports.clientDomainLong = clientDomainLong = 'https://play-cahs-velte-8s3z0890n-andrewpsimmons.vercel.app/';
 }
 else {
-    exports.socket_domain = socket_domain = 'localhost:5174';
+    exports.socket_domain = socket_domain = 'localhost:3001';
     exports.api_domain = api_domain = 'localhost:3000';
     exports.clientDomain = clientDomain = "playcah.com";
 }

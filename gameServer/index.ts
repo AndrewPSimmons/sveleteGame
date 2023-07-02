@@ -140,9 +140,13 @@ gameServer.io.on("connection", (socket) => {
 })
 
 
-gameServer.server.listen(3000, () => {
-    console.log("Listening on port 3000")
+gameServer.expressApp.listen(3000, () => {
+    console.log("Express-- Listening on port 3000")
     takeCommand()
+})
+
+gameServer.server.listen(3001, () => {
+    console.log("Server-- Listening on port 3001")
 })
 
 
