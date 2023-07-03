@@ -22,4 +22,5 @@ else {
     exports.socket_domain = socket_domain = 'localhost:3001';
     exports.api_domain = api_domain = 'localhost:3000';
     exports.clientDomain = clientDomain = "playcah.com";
+    exports.clientDomainLong = clientDomainLong = 'play-cahs-velte-kit.vercel.app';
 }

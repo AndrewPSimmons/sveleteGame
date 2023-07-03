@@ -62,8 +62,12 @@ class GameServer {
             `https://${globalConsts_1.api_domain}`,
             `http://${globalConsts_1.api_domain}`,
             `https://${globalConsts_1.clientDomain}`,
-            `http://${globalConsts_1.clientDomain}`];
-        this.expressApp = express.default().use(cors.default());
+            `http://${globalConsts_1.clientDomain}`,
+            `https://${globalConsts_1.clientDomainLong}`,
+            `http://${globalConsts_1.clientDomainLong}`];
+        this.expressApp = express.default().use(cors.default({
+            origin: this.CorsUrls
+        }));
         this.server = http.createServer(this.expressApp);
         //Make io extend Socket type 
         this.io = new socket_io_1.Server(this.server, {

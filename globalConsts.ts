@@ -18,6 +18,7 @@ if(process.env.NODE_ENV === 'production'){
     socket_domain = 'localhost:3001'
     api_domain = 'localhost:3000'
     clientDomain = "playcah.com"
+    clientDomainLong = 'play-cahs-velte-kit.vercel.app'
 }
 
 export {socket_domain, api_domain, clientDomain, clientDomainLong}

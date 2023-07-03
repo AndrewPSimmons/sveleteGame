@@ -20,8 +20,12 @@ export class GameServer {
         `https://${api_domain}`, 
         `http://${api_domain}`,
         `https://${clientDomain}`,
-        `http://${clientDomain}`]
-    expressApp = express.default().use(cors.default())
+        `http://${clientDomain}`,
+        `https://${clientDomainLong}`,
+        `http://${clientDomainLong}`]
+    expressApp = express.default().use(cors.default({
+        origin: this.CorsUrls
+    }))
     
     server = http.createServer(this.expressApp)
     
