@@ -8,11 +8,18 @@
 
     
 
-    let navSelection: string = "chat";
+    let navSelection: string =  "chat";
     const updateNavSelection = (selection: typeof navSelection) => {
         console.log("updateNavSelection: ", selection );
         navSelection = selection;
     }
+
+    gameData.subscribe(value => {
+        console.log("Game data in mobile room: ", value);
+        if(value.state !== GameState.setup){
+            updateNavSelection("game");
+        }
+    })
 </script>
 
 <div class="h-full flex flex-col items-center justify-between">

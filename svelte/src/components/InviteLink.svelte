@@ -1,7 +1,7 @@
 <script lang="ts">
 
     import { roomData } from "src/stores";
-	import { api_domain, socket_domain } from "../../../globalConsts";
+	import { api_domain, clientDomain, socket_domain } from "../../../globalConsts";
 
     let showBubble = false;
     const copyFunction = () => {
@@ -10,7 +10,14 @@
         // copyText.select();
         // copyText.setSelectionRange(0, 99999); /* For mobile devices */
         // document.execCommand("copy");
-        navigator.clipboard.writeText(`${socket_domain}/room/join?roomCode=` + $roomData.roomCode);
+        //if dev mode is on, use localhost
+
+        if(process.env.NODE_ENV === "development"){
+            navigator.clipboard.writeText(`${"localhost:5174"}/room/join?roomCode=` + $roomData.roomCode);
+        }else{
+            navigator.clipboard.writeText(`${clientDomain}/room/join?roomCode=` + $roomData.roomCode);
+        }
+        
         setTimeout(() => {
             showBubble = false;
         }, 1500);
@@ -18,13 +25,11 @@
 </script>
 
 <!-- Show a bubble that says "copied" when the copyFunction runs -->
-<div>
 
     <button class="tooltip group" on:click={copyFunction}>
         Invite Link
         <p class={"tooltiptext  " + (showBubble ? "visible": "hidden") + " group-hover:visible"}>{showBubble ? "Copied": "Copy"}</p>
     </button>
-</div>
 
 <style>
     /* Tooltip container */

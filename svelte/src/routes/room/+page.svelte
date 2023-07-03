@@ -67,7 +67,7 @@
 </script>
 
 
-<div class="h-full sm:flex  items-center justify-between hidden">
+<div class="h-full md:flex  items-center justify-between hidden">
     <SettingsModal open={isSettingsModalOpen} onClose={()=>isSettingsModalOpen = false}/>
 
     <!-- Left side of screen -->
@@ -127,7 +127,7 @@
 
 </div>
 
-<div class="sm:hidden h-full">
+<div class="md:hidden h-full">
     <MobileRoom/>
 </div>
 

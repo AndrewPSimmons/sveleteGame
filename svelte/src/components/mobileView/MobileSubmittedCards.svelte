@@ -30,7 +30,7 @@
         <div class="flex flex-col h-full w-full flex-wrap  py-4 justify-center items-center overflow-y-scroll">
                 Winner is {$roomData.members.find(m => m.id == $gameData.latestRoundWin?.playerId)?.username}
                 {#each $gameData.latestRoundWin?.whiteCards as card}
-                    <div class="sumCardContainer flex flex-row h-48 w-40 justify-between ">
+                    <div class="sumCardContainer flex flex-col h-48 w-40 ">
                         <MobileCard {card} hideText={$gameData.state == GameState.submitPhase} />
                     </div>
                 {/each}

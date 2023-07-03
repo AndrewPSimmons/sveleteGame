@@ -3,11 +3,11 @@
     import {chatLog, storeSocket, userData, isUnopenedChats, isSideBarOpen, gameData, roomData} from "../stores";
     import {onMount} from "svelte";
 	import type { PackData } from "../../../types";
-    import {api_domain} from "../../../globalConsts" ;
+    import {api_domain, httpPrefix} from "../../../globalConsts" ;
     let officialPacks : PackData[] = []
     onMount(() => {
         const asyncFunction = async () => {
-            const url = `http://${api_domain}/packs/official`
+            const url = `${httpPrefix}${api_domain}/packs/official`
             console.log("url", url);
             const response = await fetch(url,{
                 method: 'GET',

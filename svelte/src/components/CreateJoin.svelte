@@ -21,7 +21,7 @@
 		const data = {
 			username: $homeFormData.username,
 			password: $homeFormData.password,
-			roomCode: $homeFormData.roomCode
+			roomCode: $homeFormData.roomCode.toUpperCase()
 		};
 		const url = `${httpPrefix}${api_domain}/joinRoom?` + new URLSearchParams(data);
 		const response = await fetch(url, {

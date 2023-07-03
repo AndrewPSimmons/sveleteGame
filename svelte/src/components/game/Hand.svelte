@@ -102,11 +102,10 @@
 
 
 <div class="flex flex-col h-[50%] w-full align-middle">
-    <div class="w-full bg-gray-300 h-[35px] border-t border-b border-solid border-black">
-        {$userData.username}'s Hand: 
-        {$gameData.state}
-        <button on:click={submitClicked} class="">Submit Card</button>
-        <button on:click={useBlankCardClicked}>Use Blank Card</button>
+    <div class="w-full bg-gray-300 h-[35px] border-t border-b border-solid border-black py-5 flex flex-row items-center">
+        <p class="pr-4">{$userData.username}'s Hand:</p> 
+        <button on:click={submitClicked} class="mr-8">Submit Card{$gameData.blackCard?.pick > 1? "s" : "" }</button>
+        <!-- <button on:click={useBlankCardClicked}>Use Blank Card</button> -->
     </div>
     <div class="flex flex-row h-full flex-wrap overflow-y-scroll  justify-center">
         {#each $playerHand as item}
@@ -118,3 +117,10 @@
         {/each} 
     </div>
 </div>
+
+
+<style>
+    button {
+        @apply bg-blue-500 rounded-md px-2 py-1 text-white;
+    }
+</style>

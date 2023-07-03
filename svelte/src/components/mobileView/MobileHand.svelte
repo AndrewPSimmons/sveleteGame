@@ -63,15 +63,20 @@
 		$storeSocket.emit('selectingWinningCards', selectedCardArray);
 	};
 	const submitClicked = () => {
+		if ($gameData.judge?.member.id === $userData.id) {
+			console.log('You are the judge');
+			return;
+		}
+		if ($selectedCards.length === 0) {
+			alert("Click on one of the cards to select it")
+			return;
+		};
 		if ($gameData.blackCard?.pick !== $selectedCards.length) {
 			console.log('Incorrect number of cards selected');
 			return;
 		}
 		//If judge return
-		if ($gameData.judge?.member.id === $userData.id) {
-			console.log('You are the judge');
-			return;
-		}
+
 		console.log('Submitting cards', selectedCards);
 		$storeSocket.emit('submittingWhiteCards', $selectedCards);
 		$selectedCards = [];
@@ -146,7 +151,7 @@
 	<div>Loading...</div>
 {/if}
 
-<div class="flex flex-col h-[80%] w-full align-middle pb-[20%]">
+<div class="flex flex-col h-[80%] w-full align-middle  overflow-hidden">
 	<div class="w-full bg-gray-300 h-[35px] border-t border-b border-solid border-black items-center flex space-x-8 px-2">
 		{#if $gameData.state === GameState.judgePhase  && $gameData.judge?.member.id === $userData.id}
 			<button
@@ -156,32 +161,35 @@
 		{:else}
 		<button
 		class=" bg-blue-500 hover:bg-blue-700 text-white font-bold  rounded h-full w-full"
+		
 		on:click={submitClicked}>Submit Card{$gameData.blackCard?.pick > 1? "s" : ""}</button
 	>
 
 		{/if}
 	</div>
-	<div class="flex flex-row h-full flex-wrap justify-center overflow-scroll">
+	<!-- Display cards to be judged -->
+	<div class="flex flex-col h-full  overflow-scroll">
 		{#if $gameData.state === GameState.judgePhase}
 			{#each $gameData.submittedCards as cardGroup}
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<div
-					class={`submittedCardsss flex flex-row w-full h-fit justify-around rounded-md p-1 space-x-1 
+					class={`submittedCardsss flex flex-col w-full h-fit justify-around rounded-md p-1 
                         ${selectedCardArray == cardGroup ? 'bg-gray-400' : ''}`}
 					on:click={() => groupClicked(cardGroup)}
 				>
-					{#each cardGroup as card}
-						<div class="sumCardContainer flex flex-col h-16 w-full mx-4">
-							<MobileCard {card} hideText={$gameData.state == GameState.submitPhase} />
+					{#each cardGroup as card, i}
+						<div class="sumCardContainer flex flex-col h-16  w-full  py-1">
+							<MobileCard {card} hideText={$gameData.state == GameState.submitPhase} selectionNumber={i+1} />
 						</div>
 					{/each}
 				</div>
 			{/each}
+
+		<!-- Hand do pick cards from -->
         {:else if $gameData.state == GameState.submitPhase}
             {#each $playerHand as item}
-                <!-- <Card card={item} selected={selectedCards.includes(item)}/> -->
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <div on:click={() => cardSelected(item)} class="h-16 w-full p-1 mx-4 bg-transparent">
+                <div on:click={() => cardSelected(item)} class="h-16 w-full p-1  bg-transparent">
                     <Card
                         card={item}
                         selected={[...$selectedCards].includes(item)}
@@ -190,7 +198,6 @@
                 </div>
 				<!-- If selectedCards has item show here -->
 				{#if $selectedCards.includes(item)}
-					 <!-- content here -->
 					 <div class="flex flex-row w-full justify-around">
 						<button class="bg-slate-400 rounded-md px-2 border-black border-2" on:click|stopPropagation={()=>{undoBlankCard(item)}}>Reset Card</button>
 						<button class="bg-slate-400 rounded-md px-2 border-black border-2" on:click|stopPropagation={()=>{useBlankCardClicked(item)}}>Use Blank Card</button>

@@ -6,7 +6,7 @@
 </script>
 
 <div class="flex flex-row h-fit w-full align-middle p-2">
-    <div class=" flex flex-row items-center justify-center">
+    <div class=" flex flex-col items-center justify-center">
         {#if $gameData.judge?.member.id === $userData.id}
             <p class="text-xl font-extrabold">You are Judge</p>
         {/if}
