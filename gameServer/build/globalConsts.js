@@ -13,7 +13,7 @@ exports.clientDomain = clientDomain;
 let clientDomainLong;
 exports.clientDomainLong = clientDomainLong;
 if (process.env.NODE_ENV === 'production') {
-    exports.socket_domain = socket_domain = '34.206.157.48';
+    exports.socket_domain = socket_domain = 'api.playcah.com';
     exports.api_domain = api_domain = 'api.playcah.com';
     exports.clientDomain = clientDomain = "playcah.com";
     exports.clientDomainLong = clientDomainLong = 'play-cahs-velte-kit.vercel.app';
