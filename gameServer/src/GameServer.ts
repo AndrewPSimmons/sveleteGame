@@ -23,6 +23,8 @@ export class GameServer {
         `http://${clientDomain}`,
         `https://${clientDomainLong}`,
         `http://${clientDomainLong}`]
+
+    
     expressApp = express.default().use(cors.default({
         origin: this.CorsUrls
     }))
@@ -36,6 +38,7 @@ export class GameServer {
         }
     });
     constructor() {
+        console.log("CorsUrls: ", this.CorsUrls);
         // const urls = ['http://localhost:5174', 'http://localhost:3000', 
         // `https://${socket_domain}`, 
         // `http://${socket_domain}`, 
