@@ -173,7 +173,7 @@ export interface ServerToClientEvents {
     gameDataWithPlayer: (gameData: GameDataWithPlayer) => void;
     updatePlayerHand: (hand: WhiteCard[]) => void;
     roundWinner: (roundWin: RoundWin) => void;
-
+    gameWon: (winner: Player) => void;
     clearSelectedCards: () => void;
 }
 

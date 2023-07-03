@@ -176,7 +176,6 @@ class GameServer {
                 console.error("Member socketId is null, in emitUpdateGameDataWithPlayer at room.members.forEach");
                 return;
             }
-            // console.log("emitting to socketId: ", member.socketId, "Data: ", game.getGameDataWithPlayer(member.id))
             this.io.to(member.socketId).emit("gameData", game.getGameDataWithPlayer(member.id));
         });
     }
@@ -215,6 +214,9 @@ class GameServer {
     }
     emitMemberKicked(socketId) {
         this.io.to(socketId).emit("memberKicked");
+    }
+    emitGameWon(roomCode, winner) {
+        this.io.to(roomCode).emit("gameWon", winner);
     }
     //Room Functions
     createRoom(password) {

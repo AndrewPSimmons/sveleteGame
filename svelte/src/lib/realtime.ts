@@ -2,6 +2,7 @@ import ioClient, { Socket } from 'socket.io-client'
 import { gameData, roomData, chatLog, playerHand, userData as userDataStore, selectedCards } from '../stores'
 import type { ServerToClientEvents, ClientToServerEvents, UserData } from "../../../types"
 import { api_domain, socket_domain } from '../../../globalConsts';
+import type { Player } from '../../../gameServer/src/Player';
 
 
 export const socketInit = (userData: UserData) => {
@@ -59,8 +60,13 @@ export const socketInit = (userData: UserData) => {
         location.href = "/"
     })
 
+
     io.on("clearSelectedCards", () => {
         selectedCards.set([])
+    })
+
+    io.on("gameWon", (winner: Player) => {
+        console.log("Winner: ", winner);
     })
 
     return io

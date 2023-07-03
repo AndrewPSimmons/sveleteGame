@@ -26,7 +26,6 @@ class DatabaseClass {
     //=============
     GetPacks(match = {}, cols = "name pack_id card_count official white_card_count black_card_count") {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("about to do query for packs: ", match, " ", cols);
             const packs = yield models_1.Pack.find(match, cols, (err, doc) => {
                 if (err) {
                     console.error(err);

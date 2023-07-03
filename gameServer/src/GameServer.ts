@@ -156,7 +156,6 @@ export class GameServer {
                 console.error("Member socketId is null, in emitUpdateGameDataWithPlayer at room.members.forEach")
                 return 
             }
-            // console.log("emitting to socketId: ", member.socketId, "Data: ", game.getGameDataWithPlayer(member.id))
             this.io.to(member.socketId).emit("gameData", game.getGameDataWithPlayer(member.id))
         })
 
@@ -198,6 +197,10 @@ export class GameServer {
     }
     emitMemberKicked(socketId: string): void {
         this.io.to(socketId).emit("memberKicked")
+    }
+
+    emitGameWon(roomCode:string, winner: Player): void {
+        this.io.to(roomCode).emit("gameWon", winner)
     }
     //Room Functions
     createRoom(password: string): Room {

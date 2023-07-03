@@ -1,4 +1,4 @@
-import {BlackCard, GameData, GameDataWithPlayer, GameRules, GameState, Pack, RoundWin, WhiteCard} from '../../types'
+import {BlackCard, CustomWhiteCard, GameData, GameDataWithPlayer, GameRules, GameState, Pack, RoundWin, WhiteCard} from '../../types'
 import { Player } from './Player';
 import { gameServer } from './GameServer';
 import DB from './database/db';
@@ -67,7 +67,6 @@ export class Game {
         this.judge = this.players[this.players.length - 1];
 
         //Go to preRound
-        console.log("End of start");
         await this.preRound();
     }
     async preRound(){
@@ -87,7 +86,6 @@ export class Game {
 
         //Set all players isSubmitted to false
         this.players.forEach(player => {
-            console.log("Setting player.isSubmitted to false for ", player);
             player.isSubmitted = false;
         })
 
@@ -102,7 +100,6 @@ export class Game {
         gameServer.emitUpdateGameDataWithPlayer(this.roomCode);
         this.submitPhase();
         //gameServer.emitUpdateGameDataWithPlayer(this.roomCode);
-        console.log("End of preRound");
     }
     submitPhase(){
         console.log("Start of submitPhase");
@@ -118,7 +115,6 @@ export class Game {
         }
         //this.judgePhase();
         gameServer.emitUpdateGameDataWithPlayer(this.roomCode);
-        console.log("End of submitPhase");
 
         // Wait for all players to submit cards, then inside the submitCard function, check if all players have submitted, if so, run this.judgePhase()
     }
@@ -137,9 +133,18 @@ export class Game {
         //Display winner of round
         //Add members where isSpectator is false and isPlayer is false to players array, set isPlayer to true
         gameServer.emitUpdateGameDataWithPlayer(this.roomCode);
+
+        //Look for a winner
+        const winner = this.players.find(player => player.wins.length >= this.gameRules.winningScore);
+        if(winner){
+            setTimeout(async () => {
+                this.gameWon(winner);
+            }, 5000);
+        }else{
         setTimeout(async () => {
             this.preRound();
         }, 5000);
+    }
     }
     //================================================================================================
     //================================================================================================
@@ -150,7 +155,7 @@ export class Game {
         const cardsNeeded = players.map(player => {
             return this.gameRules.handCount - player.hand.length;
         }).reduce((acc, curr)=>acc+curr, 0);
-        console.log("drawPlayerHand cardsNeeded: ", cardsNeeded)
+        // console.log("drawPlayerHand cardsNeeded: ", cardsNeeded)
 
         const cards = await DB.DrawWhiteCard(this.packIds, this.usedWhiteCards, cardsNeeded);
         this.usedWhiteCards = [...this.usedWhiteCards, ...cards.map(card => card.id)];
@@ -166,7 +171,6 @@ export class Game {
 
     }
     shiftJudge(){
-        console.log("In shiftJudge, players: ", this.players);
         //Find index of judge, then set judge to next player in players array. If judge is last player in array, set judge to first player in array
         const judgeIndex = this.players.findIndex(player => player.member.id === this.judge?.member.id);
         if(judgeIndex === -1){
@@ -194,15 +198,13 @@ export class Game {
     }
     
     checkTableForAllSubmitted(){
-        console.log("Probing for allSubmitted");
-        console.log("Players before probing: ", this.players);
         const allSubmitted = this.players.every((player: any) => player.isSubmitted);
-        console.log("All submitted: ", allSubmitted);
         if(allSubmitted){
             this.judgePhase();
         }
     }
-    submitCards(playerId: string, cards: WhiteCard[]){
+    submitCards(playerId: string, cards: WhiteCard[]|CustomWhiteCard[]){
+        
         this.submittedCards.push(cards);
         this.submittedCards = this.shuffle(this.submittedCards);
 
@@ -215,9 +217,13 @@ export class Game {
             player.isSubmitted = true;
         }
         //Remove the card from player's hand
-        cards.forEach(card => {
+        cards.forEach((card: WhiteCard|CustomWhiteCard) => {
             if(player){
                 player.hand = player.hand.filter(handCard => handCard.id !== card.id);
+                const isCardCustom = card.hasOwnProperty("isCustom") && (card as CustomWhiteCard).isCustom;
+                if(isCardCustom){
+                    player.numberUsedBlackCards += 1;
+                }
             }
         })
 
@@ -227,8 +233,8 @@ export class Game {
         this.checkTableForAllSubmitted()
     }
     
-    selectWinner(cards: WhiteCard[]){
-        console.log("Winner is selected, cards: ", cards);
+
+    selectRoundWinner(cards: WhiteCard[]){
         //Look up player id for each card
         const playerId = cards.map(card => this.submitedCardsIdToPlayerIdMap.get(card.id))[0];
 
@@ -250,10 +256,8 @@ export class Game {
             blackCard: this.blackCard,
             roundNumber: this.roundNumber
         }
-        console.log("Last round win before setting latestRoundWin: ", this.latestRoundWin);
         this.latestRoundWin = roundWin;
         this.wins.push(roundWin);
-        console.log("Last round win after setting latestRoundWin: ", this.latestRoundWin);
         if(player){
             player.wins.push(roundWin);
         }
@@ -264,6 +268,13 @@ export class Game {
 
     }
 
+    gameWon(winner: Player){
+        //Do Something to end the game
+        console.log("Winner found: ", winner);
+        this.state = GameState.gameOver;
+        gameServer.emitUpdateGameDataWithPlayer(this.roomCode);
+        gameServer.emitGameWon(this.roomCode, winner);
+    }
     shutDown(){
         console.log("Shutting Down Game because room says so");
     }

@@ -3,16 +3,6 @@ import { createServer, Server as httpServer } from 'http';
 import { ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData, UserData, ErrorActions, RoomSettings, GameRules, GameData } from '../../../types';
 import { gameServer } from '../GameServer';
 
-export function initializeSocketIO(server: httpServer): Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData> {
-    const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(server, {
-        cors: {
-            origin: "http://localhost:5173",
-            methods: ["GET", "POST"]
-        }
-    });
-
-    return io;
-}
 
 export function configureSocket(io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>, socket: Socket<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>) {
     const userData: UserData = socket.handshake.query as unknown as UserData
@@ -187,7 +177,7 @@ export function configureSocket(io: Server<ClientToServerEvents, ServerToClientE
             gameServer.emitError(socket.id, "Game not found when selecting winning cards", [])
             return
         }
-        game.selectWinner(data)
+        game.selectRoundWinner(data)
     })
 
     socket.on("updatingRoomSettings", (roomSettings: Partial<RoomSettings>) => {

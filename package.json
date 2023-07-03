@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clientBuild": "cd svelte && npm run build",
     "clientDev": "cd svelte && npm run dev",
-    "serverBuild": "cd gameServer && npm run build",
+    "serverBuild": "cd gameServer && npm run build && pm2 restart 0",
     "serverDev": "cd gameServer && npm run dev"
   },
   "author": "",

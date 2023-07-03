@@ -1,19 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.configureSocket = exports.initializeSocketIO = void 0;
-const socket_io_1 = require("socket.io");
+exports.configureSocket = void 0;
 const types_1 = require("../../../types");
 const GameServer_1 = require("../GameServer");
-function initializeSocketIO(server) {
-    const io = new socket_io_1.Server(server, {
-        cors: {
-            origin: "http://localhost:5173",
-            methods: ["GET", "POST"]
-        }
-    });
-    return io;
-}
-exports.initializeSocketIO = initializeSocketIO;
 function configureSocket(io, socket) {
     const userData = socket.handshake.query;
     const member = GameServer_1.gameServer.getMember(userData.id);
@@ -161,7 +150,7 @@ function configureSocket(io, socket) {
             GameServer_1.gameServer.emitError(socket.id, "Game not found when selecting winning cards", []);
             return;
         }
-        game.selectWinner(data);
+        game.selectRoundWinner(data);
     });
     socket.on("updatingRoomSettings", (roomSettings) => {
         const room = GameServer_1.gameServer.getRoom(userData.roomCode);

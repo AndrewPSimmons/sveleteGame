@@ -19,7 +19,6 @@ class DatabaseClass {
     
 
     async GetPacks(match: any = {}, cols: string = "name pack_id card_count official white_card_count black_card_count") {
-        console.log("about to do query for packs: ", match, " ", cols);
         const packs = await Pack.find(match, cols, (err: any, doc: any) => {
             if (err) { console.error(err) }
             return doc

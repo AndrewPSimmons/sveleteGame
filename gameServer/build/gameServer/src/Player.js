@@ -6,6 +6,7 @@ class Player {
         this.hand = [];
         this.wins = [];
         this.isSubmitted = false;
+        this.numberUsedBlackCards = 0;
         this.member = member;
         Object.assign(this, extras);
     }

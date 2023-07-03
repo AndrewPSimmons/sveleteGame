@@ -73,7 +73,6 @@ class Game {
             //Set judge to last player in players array
             this.judge = this.players[this.players.length - 1];
             //Go to preRound
-            console.log("End of start");
             yield this.preRound();
         });
     }
@@ -93,7 +92,6 @@ class Game {
             yield this.selectBlackCard();
             //Set all players isSubmitted to false
             this.players.forEach(player => {
-                console.log("Setting player.isSubmitted to false for ", player);
                 player.isSubmitted = false;
             });
             this.shiftJudge();
@@ -104,7 +102,6 @@ class Game {
             GameServer_1.gameServer.emitUpdateGameDataWithPlayer(this.roomCode);
             this.submitPhase();
             //gameServer.emitUpdateGameDataWithPlayer(this.roomCode);
-            console.log("End of preRound");
         });
     }
     submitPhase() {
@@ -120,7 +117,6 @@ class Game {
         }
         //this.judgePhase();
         GameServer_1.gameServer.emitUpdateGameDataWithPlayer(this.roomCode);
-        console.log("End of submitPhase");
         // Wait for all players to submit cards, then inside the submitCard function, check if all players have submitted, if so, run this.judgePhase()
     }
     judgePhase() {
@@ -138,9 +134,18 @@ class Game {
         //Display winner of round
         //Add members where isSpectator is false and isPlayer is false to players array, set isPlayer to true
         GameServer_1.gameServer.emitUpdateGameDataWithPlayer(this.roomCode);
-        setTimeout(() => __awaiter(this, void 0, void 0, function* () {
-            this.preRound();
-        }), 5000);
+        //Look for a winner
+        const winner = this.players.find(player => player.wins.length >= this.gameRules.winningScore);
+        if (winner) {
+            setTimeout(() => __awaiter(this, void 0, void 0, function* () {
+                this.gameWon(winner);
+            }), 5000);
+        }
+        else {
+            setTimeout(() => __awaiter(this, void 0, void 0, function* () {
+                this.preRound();
+            }), 5000);
+        }
     }
     //================================================================================================
     //================================================================================================
@@ -150,7 +155,7 @@ class Game {
             const cardsNeeded = players.map(player => {
                 return this.gameRules.handCount - player.hand.length;
             }).reduce((acc, curr) => acc + curr, 0);
-            console.log("drawPlayerHand cardsNeeded: ", cardsNeeded);
+            // console.log("drawPlayerHand cardsNeeded: ", cardsNeeded)
             const cards = yield db_1.default.DrawWhiteCard(this.packIds, this.usedWhiteCards, cardsNeeded);
             this.usedWhiteCards = [...this.usedWhiteCards, ...cards.map(card => card.id)];
             let cardIndex = 0;
@@ -164,7 +169,6 @@ class Game {
         });
     }
     shiftJudge() {
-        console.log("In shiftJudge, players: ", this.players);
         //Find index of judge, then set judge to next player in players array. If judge is last player in array, set judge to first player in array
         const judgeIndex = this.players.findIndex(player => { var _a; return player.member.id === ((_a = this.judge) === null || _a === void 0 ? void 0 : _a.member.id); });
         if (judgeIndex === -1) {
@@ -193,10 +197,7 @@ class Game {
         });
     }
     checkTableForAllSubmitted() {
-        console.log("Probing for allSubmitted");
-        console.log("Players before probing: ", this.players);
         const allSubmitted = this.players.every((player) => player.isSubmitted);
-        console.log("All submitted: ", allSubmitted);
         if (allSubmitted) {
             this.judgePhase();
         }
@@ -213,9 +214,13 @@ class Game {
             player.isSubmitted = true;
         }
         //Remove the card from player's hand
-        cards.forEach(card => {
+        cards.forEach((card) => {
             if (player) {
                 player.hand = player.hand.filter(handCard => handCard.id !== card.id);
+                const isCardCustom = card.hasOwnProperty("isCustom") && card.isCustom;
+                if (isCardCustom) {
+                    player.numberUsedBlackCards += 1;
+                }
             }
         });
         GameServer_1.gameServer.emitPlayerHand(this.roomCode, playerId);
@@ -223,8 +228,7 @@ class Game {
         //Find all players where isSubmitted is false, if there are none, run this.judgePhase()
         this.checkTableForAllSubmitted();
     }
-    selectWinner(cards) {
-        console.log("Winner is selected, cards: ", cards);
+    selectRoundWinner(cards) {
         //Look up player id for each card
         const playerId = cards.map(card => this.submitedCardsIdToPlayerIdMap.get(card.id))[0];
         //Add the win to the player
@@ -243,16 +247,21 @@ class Game {
             blackCard: this.blackCard,
             roundNumber: this.roundNumber
         };
-        console.log("Last round win before setting latestRoundWin: ", this.latestRoundWin);
         this.latestRoundWin = roundWin;
         this.wins.push(roundWin);
-        console.log("Last round win after setting latestRoundWin: ", this.latestRoundWin);
         if (player) {
             player.wins.push(roundWin);
         }
         GameServer_1.gameServer.emitUpdateGameDataWithPlayer(this.roomCode);
         GameServer_1.gameServer.emitRoundWin(this.roomCode, roundWin);
         this.postRound();
+    }
+    gameWon(winner) {
+        //Do Something to end the game
+        console.log("Winner found: ", winner);
+        this.state = types_1.GameState.gameOver;
+        GameServer_1.gameServer.emitUpdateGameDataWithPlayer(this.roomCode);
+        GameServer_1.gameServer.emitGameWon(this.roomCode, winner);
     }
     shutDown() {
         console.log("Shutting Down Game because room says so");

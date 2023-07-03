@@ -1,5 +1,5 @@
 <script lang='ts'>
-	import { playerHand, selectedCards } from "src/stores";
+	import { gameData, playerHand, selectedCards } from "src/stores";
     import type {WhiteCard, BlackCard, CustomWhiteCard} from "../../../../types";
 
     export let card: WhiteCard | BlackCard;
@@ -7,8 +7,13 @@
     export let selectionNumber: number = 0;
     export let hideText: boolean = false;
     const isBlackCard = card.hasOwnProperty("pick");
+	const hasBlankCardsLeft = $gameData.gameRules.blankCardUses - $selectedCards.filter((card)=>{return card.isCustom}).length - $gameData.player?.numberUsedBlackCards
 
     const useBlankCardClicked = (card: WhiteCard) => {
+		if(!hasBlankCardsLeft){
+			alert("You have no blank cards left")
+			return
+		}
 		//Get new text from window.prompt
 		if ($selectedCards.length === 0) return;
 		const newText = window.prompt('Enter new text for blank card');
@@ -17,13 +22,18 @@
 
         //Get index of card
         const indexOfCard = $selectedCards.indexOf(card)
+        const oldCard = $selectedCards[indexOfCard]
+        console.log(oldCard);
 		//Make most recent card custom
 		const newCard: CustomWhiteCard = {
-			...$selectedCards[$selectedCards.length - indexOfCard],
-			oldText: $selectedCards[$selectedCards.length - indexOfCard].text,
+			...oldCard,
+			oldText: oldCard.text,
 			text: newText,
 			isCustom: true
 		};
+
+        //Match the card passed in with the card in the selected cards array to create the newCard
+
 
 		//Replace selected card with new card
 		const newSelectedCards = $selectedCards.map((card) => {
@@ -45,6 +55,7 @@
 	};
 
 	const undoBlankCard = (item: CustomWhiteCard) => {
+
 		//If oldText is not set on card, return
 		if (!item.oldText) return;
 		//Find card in player hand and set text to old text, remove isCustom and oldText
@@ -97,14 +108,19 @@
     
     `}>
     {#if !hideText}
-        <div class="h-full relative">
-            {#if selectionNumber > 0}
-                <p class="absolute -top-2 right-0">{selectionNumber}</p>
+        <div class="h-full ">
+            
+            <div class="flex flex-col justify-between h-full text-sm ">
+                <!-- <p class="text-sm ">{card.text}</p>
+				 -->
+				 <div class="h-full flex flex-row justify-between">
+					<p class="text-sm ">{card.text}</p>
+					{#if selectionNumber > 0}
+                <p class=" -top-2 right-0">{selectionNumber}</p>
             <!-- content here -->
             {/if}
-            <div class="flex flex-col justify-between h-full text-sm">
-                <p class="text-sm">{card.text}</p>
-                {#if $selectedCards.includes(card)}
+				 </div>
+                {#if $selectedCards.includes(card) && hasBlankCardsLeft}
                          <!-- content here -->
                          <div class="flex flex-row w-full justify-around">
                             <button class="bg-slate-400 rounded-md px-2 border-black border-2" on:click|stopPropagation={()=>{undoBlankCard(card)}}>Reset Card</button>

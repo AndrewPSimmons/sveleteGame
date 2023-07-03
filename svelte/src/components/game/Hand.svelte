@@ -32,7 +32,15 @@
             console.log("Card already selected");
             // Find index of selection and remove every element after it including itself
             const index = $selectedCards.indexOf(card)
-            $selectedCards = $selectedCards.slice(0, index)
+            console.log($selectedCards);
+            $selectedCards.forEach((card, i)=> {
+                console.log(i, index, card);
+                if(i >= index){
+                    resetCardToOriginal(card as CustomWhiteCard)
+                    $selectedCards = $selectedCards.filter(c => c.id !== card.id)
+                }
+            })
+            // $selectedCards = $selectedCards.slice(0, index)
             return
         }
         if($selectedCards.length === $gameData.blackCard.pick){
@@ -43,6 +51,37 @@
         $selectedCards = [...$selectedCards, card]
         console.log("Selected cards", selectedCards);
     }
+    const resetCardToOriginal = (card: CustomWhiteCard) => {
+		//If oldText is not set on card, return
+		if (!card.oldText) return;
+		//Find card in player hand and set text to old text, remove isCustom and oldText
+		console.log("Undoing blank card", card);
+		const oldCard = {
+			id: card.id,
+			pack: 1,
+			text: card.oldText,
+			_id: card._id
+		}
+
+		const newPlayerHand = $playerHand.map((card) => {
+			if (card.id === oldCard.id) {
+				return oldCard;
+			}
+			return card;
+		});
+
+		//Replace selected card with new card
+		const newSelectedCards = $selectedCards.map((card) => {
+			if (card.id === oldCard.id) {
+				return oldCard;
+			}
+			return card;
+		});
+
+		selectedCards.set(newSelectedCards);
+		playerHand.set(newPlayerHand);
+	}
+
 
     const submitClicked = () => {
         if($gameData.blackCard?.pick !== $selectedCards.length){
@@ -105,7 +144,8 @@
     <div class="w-full bg-gray-300 h-[35px] border-t border-b border-solid border-black py-5 flex flex-row items-center">
         <p class="pr-4">{$userData.username}'s Hand:</p> 
         <button on:click={submitClicked} class="mr-8">Submit Card{$gameData.blackCard?.pick > 1? "s" : "" }</button>
-        <!-- <button on:click={useBlankCardClicked}>Use Blank Card</button> -->
+        <!--                        Total Per Game                      Total used in current selection                                Total Used so far -->
+        <p>Blank Cards Remaining - {$gameData.gameRules.blankCardUses - $selectedCards.filter((card)=>{return card.isCustom}).length - $gameData.player?.numberUsedBlackCards}</p>
     </div>
     <div class="flex flex-row h-full flex-wrap overflow-y-scroll  justify-center">
         {#each $playerHand as item}
