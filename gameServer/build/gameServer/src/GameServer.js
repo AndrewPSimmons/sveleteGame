@@ -65,7 +65,7 @@ class GameServer {
         //Make io extend Socket type 
         this.io = new socket_io_1.Server(this.server, {
             cors: {
-                origin: [`https://${globalConsts_1.socket_domain}`, `http://${globalConsts_1.socket_domain}`, `https://${globalConsts_1.api_domain}`, `http://${globalConsts_1.api_domain}`, 'http://localhost:5174', 'http://localhost:3000'] //methods: ["GET", "POST"]
+                origin: this.CorsUrls //methods: ["GET", "POST"]
             }
         });
         console.log("CorsUrls: ", this.CorsUrls);

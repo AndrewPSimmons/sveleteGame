@@ -3,7 +3,7 @@
 	import { homeFormData } from '../stores';
 	import { userData } from '../stores';
 	import axios from 'axios';
-	import { api_domain } from '../../../globalConsts';
+	import { api_domain, httpPrefix } from '../../../globalConsts';
 	userData.subscribe((value) => {
 		console.log("In the subscribe", value);
 	})
@@ -23,7 +23,7 @@
 			password: $homeFormData.password,
 			roomCode: $homeFormData.roomCode
 		};
-		const url = `http://${api_domain}/joinRoom?` + new URLSearchParams(data);
+		const url = `${httpPrefix}${api_domain}/joinRoom?` + new URLSearchParams(data);
 		const response = await fetch(url, {
 			method: 'GET',
 		})
@@ -52,7 +52,7 @@
 			username: $homeFormData.username,
 			password: $homeFormData.password
 		};
-		const url = `https://${api_domain}/createRoom?`+ new URLSearchParams(data);
+		const url = `${httpPrefix}${api_domain}/createRoom?`+ new URLSearchParams(data);
 
 		//GET request to create room http method is GET
 		const response = await fetch(url, {

@@ -9,16 +9,19 @@ let socket_domain: string;
 let api_domain: string;
 let clientDomain: string;
 let clientDomainLong: string;
+let httpPrefix: string;
 if(process.env.NODE_ENV === 'production'){
     socket_domain = 'api.playcah.com'
     api_domain = 'api.playcah.com'
     clientDomain = "playcah.com"
     clientDomainLong = 'play-cahs-velte-kit.vercel.app'
+    httpPrefix = 'https://'
 }else{
     socket_domain = 'localhost:3001'
     api_domain = 'localhost:3000'
     clientDomain = "playcah.com"
     clientDomainLong = 'play-cahs-velte-kit.vercel.app'
+    httpPrefix = 'http://'
 }
 
-export {socket_domain, api_domain, clientDomain, clientDomainLong}
+export {socket_domain, api_domain, clientDomain, clientDomainLong, httpPrefix}

@@ -34,7 +34,7 @@ export class GameServer {
     //Make io extend Socket type 
     io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(this.server, {
         cors: {
-            origin: [`https://${socket_domain}`, `http://${socket_domain}`, `https://${api_domain}`, `http://${api_domain}`, 'http://localhost:5174', 'http://localhost:3000']//methods: ["GET", "POST"]
+            origin: this.CorsUrls//methods: ["GET", "POST"]
         }
     });
     constructor() {
