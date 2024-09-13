@@ -1,9 +1,102 @@
-<mxfile host="app.diagrams.net" modified="2024-09-13T21:03:49.254Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="24.6.5" etag="rEazXtdTAX8s-vOUSy-4" type="github">
+<mxfile host="app.diagrams.net" modified="2024-09-13T21:30:48.996Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" etag="HGLjDYIfsrwHOKhIsryK" version="24.6.5" type="github">
   <diagram name="Page-1" id="zIawdSC4UdB0pFSsBNTG">
-    <mxGraphModel>
+    <mxGraphModel dx="1480" dy="1420" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4000" pageHeight="4000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=16;" edge="1" parent="1" source="IDCkP0QcPYAwiYPzeVZG-1" target="IDCkP0QcPYAwiYPzeVZG-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-1" value="Meeting in tavern" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="280" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=16;" edge="1" parent="1" source="IDCkP0QcPYAwiYPzeVZG-2" target="IDCkP0QcPYAwiYPzeVZG-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=16;" edge="1" parent="1" source="IDCkP0QcPYAwiYPzeVZG-2" target="IDCkP0QcPYAwiYPzeVZG-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-2" value="Goblin Arrows" style="whiteSpace=wrap;html=1;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="280" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=16;" edge="1" parent="1" source="IDCkP0QcPYAwiYPzeVZG-6" target="IDCkP0QcPYAwiYPzeVZG-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-6" value="Cragmaw Hide Out" style="whiteSpace=wrap;html=1;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="280" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="IDCkP0QcPYAwiYPzeVZG-12" target="IDCkP0QcPYAwiYPzeVZG-52">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-12" value="Phandalin" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="420" y="430" width="130" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-15" value="Redbrand Hideout" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="280" y="640" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-17" value="Side Quests" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="960" y="590" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-27" value="&lt;font style=&quot;font-size: 23px;&quot;&gt;Locations in Phandalin&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="670" y="330" width="290" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-36" value="Barthens&#39;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="640" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IDCkP0QcPYAwiYPzeVZG-37" target="IDCkP0QcPYAwiYPzeVZG-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-37" value="Edermath&lt;div&gt;Orchard&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="740" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IDCkP0QcPYAwiYPzeVZG-38" target="IDCkP0QcPYAwiYPzeVZG-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-38" value="Shrine&lt;div&gt;of&lt;/div&gt;&lt;div&gt;Luck&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="840" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-39" value="Stonehill&amp;nbsp;&lt;div&gt;Inn&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="940" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-41" value="Sleepng&lt;div&gt;Giant&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1040" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-42" value="Lionsshield&lt;div&gt;Coster&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1140" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-43" value="Townmasters&lt;div&gt;Hall&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1240" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-44" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1340" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-46" value="Redbrand&lt;div&gt;Encounter&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="530" y="640" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-52" value="&lt;h1&gt;Locations&lt;/h1&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="580" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-55" value="" style="group;fillColor=none;enumerate=0;" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="1020" y="640" width="80" height="580" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-19" value="Old Owl Well" style="whiteSpace=wrap;html=1;aspect=fixed;direction=east;" vertex="1" parent="IDCkP0QcPYAwiYPzeVZG-55">
+          <mxGeometry width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-21" value="Banshees&amp;nbsp;&lt;div&gt;Bargain&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;direction=east;" vertex="1" parent="IDCkP0QcPYAwiYPzeVZG-55">
+          <mxGeometry y="100" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-32" value="Old Owl Well" style="whiteSpace=wrap;html=1;aspect=fixed;direction=east;" vertex="1" parent="IDCkP0QcPYAwiYPzeVZG-55">
+          <mxGeometry y="200" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-33" value="Old Owl Well" style="whiteSpace=wrap;html=1;aspect=fixed;direction=east;" vertex="1" parent="IDCkP0QcPYAwiYPzeVZG-55">
+          <mxGeometry y="300" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-34" value="Old Owl Well" style="whiteSpace=wrap;html=1;aspect=fixed;direction=east;" vertex="1" parent="IDCkP0QcPYAwiYPzeVZG-55">
+          <mxGeometry y="400" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-35" value="Old Owl Well" style="whiteSpace=wrap;html=1;aspect=fixed;direction=east;" vertex="1" parent="IDCkP0QcPYAwiYPzeVZG-55">
+          <mxGeometry y="500" width="80" height="80" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
