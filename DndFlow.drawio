@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-09-13T21:30:48.996Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" etag="HGLjDYIfsrwHOKhIsryK" version="24.6.5" type="github">
+<mxfile host="app.diagrams.net" modified="2024-09-13T21:35:02.751Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" etag="QvwNzwTpR_sByxQKNffc" version="24.6.5" type="github">
   <diagram name="Page-1" id="zIawdSC4UdB0pFSsBNTG">
-    <mxGraphModel dx="1480" dy="1420" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4000" pageHeight="4000" math="0" shadow="0">
+    <mxGraphModel dx="958" dy="919" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4000" pageHeight="4000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -67,7 +67,7 @@
         <mxCell id="IDCkP0QcPYAwiYPzeVZG-43" value="Townmasters&lt;div&gt;Hall&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="760" y="1240" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="IDCkP0QcPYAwiYPzeVZG-44" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-44" value="Alderleaf Farm" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="760" y="1340" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="IDCkP0QcPYAwiYPzeVZG-46" value="Redbrand&lt;div&gt;Encounter&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
@@ -96,6 +96,30 @@
         </mxCell>
         <mxCell id="IDCkP0QcPYAwiYPzeVZG-35" value="Old Owl Well" style="whiteSpace=wrap;html=1;aspect=fixed;direction=east;" vertex="1" parent="IDCkP0QcPYAwiYPzeVZG-55">
           <mxGeometry y="500" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-58" value="Miners&lt;div&gt;Exchange&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1440" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-59" value="Tresendar&lt;div&gt;Manor&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1540" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-60" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1640" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-61" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1740" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-62" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1840" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-63" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1940" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-64" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="2040" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IDCkP0QcPYAwiYPzeVZG-65" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="2140" width="80" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
